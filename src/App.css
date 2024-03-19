@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.containerWidth {
+  @apply w-11/12 max-w-[1600px] mx-auto;
+}
+
+.bg-ecommerce {
+  width: 100%;
+  background: url('./assets/backgroundEcommerce.png') center center/cover
+      no-repeat,
+    linear-gradient(4.4deg, #5b1b67 -18.98%, #0e040f 100.96%);
+  height: auto;
+}
+
+/* Auth Menu desing */
+.menu > a {
+  border-radius: 9999px 0 0 9999px;
+  padding: 14px 24px;
+  font-weight: bold;
+  text-align: center;
+  transition: color 0.5s;
+  color: white;
+}
+
+.menu > a:target {
+  background-color: white;
+  color: black;
+}
+
+.menu > .a-button::after,
+.menu > .a-button::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: 0;
+  width: 20px;
+  height: 50px;
+  border-radius: 0 0 25px 0;
+}
+
+.menu > .a-button::before {
+  top: auto;
+  bottom: 18px;
+  border-radius: 0 25px 0 0;
+}
+
+.menu > .b-button::after,
+.menu > .b-button::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  right: 0;
+  width: 20px;
+  height: 50px;
+  border-radius: 0 0 25px 0;
+}
+
+.menu > .b-button::before {
+  top: auto;
+  bottom: -50px;
+  border-radius: 0 25px 0 0;
+}
+
+.menu > a:target::after {
+  box-shadow: 0 25px 0 0 white;
+}
+
+.menu > a:target::before {
+  box-shadow: 0 -25px 0 0 white;
+}
+
+.bgnewProduct {
+  background: linear-gradient(180deg, #efd0ec 0%, #f8f8f8 100%);
+}
+
+.carrito::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 22px;
+  background: red;
+  border-radius: 50%;
+  top: -8px;
+  right: -4px;
+}
