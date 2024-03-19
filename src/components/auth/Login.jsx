@@ -22,7 +22,7 @@ export const Login = () => {
   const handleLoginSubmit = async (data) => {
     try {
       await login({ username: data.username, password: data.password });
-      navigate(-1)
+      navigate('/')
     } catch (error) {
       console.log(error);
     }
