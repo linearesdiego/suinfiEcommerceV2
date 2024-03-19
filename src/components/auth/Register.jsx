@@ -7,6 +7,7 @@ import arrowIcon from '../../assets/arrowIconSignUp.png'
 import password from '../../assets/passwordIconLogin.png'
 import googleIcon from '../../assets/googleIcon.png'
 import facebookIcon from '../../assets/facebookIcon.png'
+import { Alerts } from '../Alerts';
 export const Register = () => {
   const { register } = useAuth();
   const navigate = useNavigate()
@@ -17,35 +18,17 @@ export const Register = () => {
     formState: { errors },
     getValues,
   } = useForm();
-  const [userData, setUserData] = useState({
-    username: '',
-    nombre: '',
-    apellido: '',
-    email: '',
-    tipCedula: '',
-    cedula: '',
-    celular: '',
-    direccion: '',
-    password: '',
-    confirmPassword: '',
-  });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-  const handleSubmit = async () => {
+
+  const onSubmit = async (data) => {
     try {
       await register(userData);
-      console.log('Se ha enviado correctamente los datos');
       navigate('/auth#login');
     } catch (error) {
       console.log('AXIOS ERROR', error);
     }
-  };
+  }
+
   // Estado para controlar el paso anterior
   let [prevStep, setPrevStep] = useState(0);
   // Estado para controlar el paso actual
@@ -63,10 +46,7 @@ export const Register = () => {
       </h1>
       <div className="w-full h-full flex justify-center items-center">
         <form
-          onSubmit={handleSubmitValidator((data) => {
-            console.log('SE HAN VALIDADO LOS DATOS', data);
-            handleSubmit();
-          })}
+          onSubmit={handleSubmitValidator(onSubmit)}
           className="flex flex-col items-center w-full md:w-[75%] mx-auto"
         >
           {/* -- PASO 1 -- */}
@@ -85,10 +65,11 @@ export const Register = () => {
                     {...registerValidator('username', { required: true })}
                     type="text"
                     placeholder="Username"
+                    name='username'
                     className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
-                    value={userData.username}
-                    onChange={handleChange}
-                    aria-invalid={errors.username ? 'true' : 'false'}
+
+/*                     onChange={handleChange}
+ */                    aria-invalid={errors.username ? 'true' : 'false'}
                   />
                   {errors.username && errors.username.type === 'required' && (
                     <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
@@ -111,8 +92,9 @@ export const Register = () => {
                     type="text"
                     placeholder="Name"
                     className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
-                    value={userData.nombre}
-                    onChange={handleChange}
+                    name='nombre'
+                    /*  value={userData.nombre}
+                     onChange={handleChange} */
                     aria-invalid={errors.nombre ? 'true' : 'false'}
                   />
                   {errors.nombre && errors.nombre.type === 'required' && (
@@ -134,9 +116,10 @@ export const Register = () => {
                     {...registerValidator('apellido', { required: true })}
                     type="text"
                     placeholder="Lastname"
+                    name='apellido'
                     className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
-                    value={userData.apellido}
-                    onChange={handleChange}
+                    /*  value={userData.apellido}
+                     onChange={handleChange} */
                     aria-invalid={errors.apellido ? 'true' : 'false'}
                   />
                   {errors.apellido && errors.apellido.type === 'required' && (
@@ -158,9 +141,10 @@ export const Register = () => {
                     {...registerValidator('email', { required: true })}
                     type="email"
                     placeholder="Email"
+                    name='email'
                     className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
-                    value={userData.email}
-                    onChange={handleChange}
+                    /*   value={userData.email}
+                      onChange={handleChange} */
                     aria-invalid={errors.email ? 'true' : 'false'}
                   />
                   {errors.email && errors.email.type === 'required' && (
@@ -174,7 +158,6 @@ export const Register = () => {
                 <button
                   type="button"
                   onClick={handleSubmitValidator((data) => {
-                    console.log('SE HAN VALIDADO LOS DATOS', data);
                     ChangeStep();
                   })}
                   className="text-white rounded-full bg-black w-32 h-8 shadow-md hover:shadow-xl font-semibold"
@@ -196,9 +179,8 @@ export const Register = () => {
                     className="absolute left-0 top-1/2 transform -translate-y-1/2"
                   />
                   <select
-                    onChange={handleChange}
+                    {...registerValidator('tipCedula', { required: true })}
                     name="tipCedula"
-                    value={userData.tipCedula}
                     className="text-gray-400 border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                   >
                     <option value="" disabled selected>
@@ -226,9 +208,10 @@ export const Register = () => {
                     {...registerValidator('cedula', { required: true })}
                     type="text"
                     placeholder="Cedula"
+                    name='cedula'
                     className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
-                    value={userData.cedula}
-                    onChange={handleChange}
+                    /*  value={userData.cedula}
+                     onChange={handleChange} */
                     aria-invalid={errors.cedula ? 'true' : 'false'}
                   />
                   {errors.cedula && errors.cedula.type === 'required' && (
@@ -250,9 +233,10 @@ export const Register = () => {
                     {...registerValidator('celular', { required: true })}
                     type="text"
                     placeholder="Cellphone"
+                    name='celular'
                     className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
-                    value={userData.celular}
-                    onChange={handleChange}
+                    /*   value={userData.celular}
+                      onChange={handleChange} */
                     aria-invalid={errors.celular ? 'true' : 'false'}
                   />
                   {errors.celular && errors.celular.type === 'required' && (
@@ -275,8 +259,9 @@ export const Register = () => {
                     type="text"
                     placeholder="Direccion"
                     className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
-                    value={userData.direccion}
-                    onChange={handleChange}
+                    name='direccion'
+                    /*  value={userData.direccion}
+                     onChange={handleChange} */
                     aria-invalid={errors.direccion ? 'true' : 'false'}
                   />
                   {errors.direccion && errors.direccion.type === 'required' && (
@@ -325,9 +310,10 @@ export const Register = () => {
                     {...registerValidator('password', { required: true })}
                     type="password"
                     placeholder="Password"
+                    name='password'
                     className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
-                    value={userData.password}
-                    onChange={handleChange}
+                    /*  value={userData.password}
+                     onChange={handleChange} */
                     aria-invalid={errors.password ? 'true' : 'false'}
                   />
                   {errors.password && errors.password.type === 'required' && (
@@ -353,8 +339,9 @@ export const Register = () => {
                     type="password"
                     placeholder="Confirm Password"
                     className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
-                    value={userData.confirmPassword}
-                    onChange={handleChange}
+                    /* alue={userData.confirmPassword}
+                    onChange={handleChange} */
+                    name='confirmPassword'
                     aria-invalid={errors.confirmPassword ? 'true' : 'false'}
                   />
                   {errors.confirmPassword &&
