@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/Auth';
 import { fetchOneProfile } from '../../services/Perfil';
 
+//images
+import group from '../../assets/Group 225.png'
 export const Account = () => {
   const [profile, setProfile] = useState();
   const { dataLogin } = useAuth();
@@ -27,7 +29,7 @@ export const Account = () => {
             <img
               width={180}
               height={180}
-              src="/Group 225.png"
+              src={group}
               alt="Superpuesta"
             />
           </div>

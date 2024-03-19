@@ -6,6 +6,11 @@ import AuthLogin from './pages/auth/page';
 import { NewProducto } from "./pages/NewProducto";
 import ProductDetail from "./components/ProductDetail";
 import { SearchGeneral } from "./pages/SearchGeneral";
+import { Account } from "./components/profile/Account";
+import { Profile } from "./pages/Profile/Profile";
+import { AccountPage } from "./pages/Profile/AccountPage";
+import { Security } from "./pages/Profile/Security";
+import { Card } from "./pages/Profile/Card";
 
 function App() {
 
@@ -22,6 +27,9 @@ function App() {
         <Route path='/newProduct' element={<NewProducto />} />
         <Route path='/product-detail/:id' element={<ProductDetail />} />
         <Route path='/SearchProduct' element={<SearchGeneral />} />
+        <Route path='/profile/account' element={<AccountPage />} />
+        <Route path='/profile/security' element={<Security />} />
+        <Route path='/profile/cards' element={<Card />} />
         {/*  <Route path='/newProduct' element={<Proveedores />} />
         
         

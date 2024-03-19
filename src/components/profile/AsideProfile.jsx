@@ -1,40 +1,37 @@
-'use client';
 import React from 'react';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
-import { useAuth } from '@/context/Auth';
 //Images
-import customerPic from '../../../public/Customer.png';
-import securityPic from '../../../public/Security Shield.png';
-import magneticCardPic from '../../../public/Magnetic Card.png';
-import logoutPic from '../../../public/logout.png';
+import customerPic from '../../assets/Customer.png';
+import securityPic from '../../assets/Security Shield.png';
+import magneticCardPic from '../../assets/Magnetic Card.png';
+import logoutPic from '../../assets/logout.png';
 //Components
-import { Account } from '@/components/profile/Account';
-import { Security } from '@/components/profile/Security';
-import { Cards } from '@/components/profile/Cards';
+
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/Auth';
+import { Account } from './Account';
+import { Cards } from './Cards';
+import { Security } from './Security';
 
 export const AsideProfile = () => {
-  const router = useRouter();
-  const currentRoute = usePathname();
-  const isActive = (path: any) => currentRoute === path;
+  const location = useLocation();
+  const navigate = useNavigate()
+  const isActive = (path) => location.pathname === path;
   const { logout } = useAuth();
   //function to edit hover:buttons on paths
-  const buttonClasses = (path: any) => `
+  const buttonClasses = (path) => `
   flex items-center mx-0 my-0 rounded-md p-4 transition duration-300
-  ${
-    isActive(path) ? 'bg-[#7637839C] ' : 'bg-[#37133E]'
-  } hover:bg-[#7637839C] cursor-pointer gap-2
+  ${isActive(path) ? 'bg-[#7637839C] ' : 'bg-[#37133E]'
+    } hover:bg-[#7637839C] cursor-pointer gap-2
 `;
 
   const handleLogout = () => {
     logout();
-    router.push('/auth#login');
+    navigate('/auth#login');
   };
 
   //function to render the components depending on paths
   const renderProfileContent = () => {
-    switch (currentRoute) {
+    switch (location.pathname) {
       case '/profile/account':
         return <Account />;
       case '/profile/security':
@@ -50,10 +47,10 @@ export const AsideProfile = () => {
         <aside className="bg-[#37133E] lg:text-base md:text-sm sm:text-xs  lg:w-1/4 my-0 text-[#D1C0D4] lg:flex lg:flex-col gap-1 text-center">
           <button
             type="button"
-            onClick={() => router.push('/profile/account')}
+            onClick={() => navigate('/profile/account')}
             className={buttonClasses('/profile/account') + 'mt-2'}
           >
-            <Image
+            <img
               src={customerPic}
               alt="Info de la cuenta"
               className="w-4 h-4 mr-4 ml-2"
@@ -63,10 +60,10 @@ export const AsideProfile = () => {
 
           <button
             type="button"
-            onClick={() => router.push('/profile/security')}
+            onClick={() => navigate('/profile/security')}
             className={buttonClasses('/profile/security')}
           >
-            <Image
+            <img
               src={securityPic}
               alt="Seguridad"
               className="w-4 h-4 mr-4 ml-2"
@@ -76,10 +73,10 @@ export const AsideProfile = () => {
           {/* routerLink="/ecommerce/profile/cards" routerLinkActive="bg-[#7637839C]" */}
           <button
             type="button"
-            onClick={() => router.push('/profile/cards')}
+            onClick={() => navigate('/profile/cards')}
             className={buttonClasses('/profile/cards')}
           >
-            <Image
+            <img
               src={magneticCardPic}
               alt="Seguridad"
               className="w-4 h-4 mr-4 ml-2"
@@ -91,7 +88,7 @@ export const AsideProfile = () => {
             onClick={handleLogout}
             className={buttonClasses('/profile/cards')}
           >
-            <Image
+            <img
               src={logoutPic}
               alt="cerrar-sesion"
               className="w-7 h-7 mr-2 ml-2 invert"

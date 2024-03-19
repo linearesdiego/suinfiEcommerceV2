@@ -1,9 +1,8 @@
 import React from 'react';
-import Image from 'next/image';
 
 //Images
-import Group232Pic from '../../../public/Group 225.png';
-import pinkCard from '../../../public/pink bank card.png';
+import img1 from '../../assets/Group 225.png';
+import pinkCard from '../../assets/pink bank card.png';
 export const Cards = () => {
   return (
     <>
@@ -14,14 +13,14 @@ export const Cards = () => {
         <div className="bg-white border border-opacity-30 border-black shadow-lg py-4 rounded-xl mt-8 mr-4 h-full">
           <div className="bg-white border-b border-opacity-30 border-black p-4 flex items-center mt-0 mr-full h-2/6">
             <div className="relative w-auto h-auto p-0 my-6 ml-10 mr-12">
-              <Image
-                src={Group232Pic}
+              <img
+                src={img1}
                 className="w-full h-full object-cover"
                 alt="Group-img"
               />
 
               <div className="absolute bottom-8 left-0 w-full">
-                <Image src={pinkCard} alt="Superpuesta" className="px-6 py-0" />
+                <img src={pinkCard} alt="Superpuesta" className="px-6 py-0" />
               </div>
             </div>
 
@@ -39,14 +38,14 @@ export const Cards = () => {
           </div>
           <div className="bg-white border-b border-opacity-30 border-black p-4 flex items-center mt-0 mr-full h-2/6">
             <div className="relative w-auto h-auto p-0 my-6 ml-10 mr-12">
-              <Image
-                src={Group232Pic}
+              <img
+                src={img1}
                 alt="Fondo-img"
                 className="w-full h-full object-cover"
               />
 
               <div className="absolute bottom-8 left-0 w-full">
-                <Image src={pinkCard} alt="Superpuesta" className="px-6 py-0" />
+                <img src={pinkCard} alt="Superpuesta" className="px-6 py-0" />
               </div>
             </div>
 
