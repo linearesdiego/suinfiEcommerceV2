@@ -25,7 +25,7 @@ export const Carousel = () => {
         pagination={{
           dynamicBullets: true,
         }}
-        autoplay={{ delay: 1000 }}
+        autoplay={{ delay: 5000 }}
         modules={[Pagination, Autoplay]}
         className="mb-10"
       >
