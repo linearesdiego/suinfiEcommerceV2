@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ModalCarrito } from './ModalCarrito';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/Auth';
 
 //images
@@ -13,6 +13,7 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { dataLogin, showModal, setShowModal } = useAuth();
   const [search, setSearch] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
 
 
   const navigate = useNavigate();
@@ -33,7 +34,8 @@ export const Navbar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (search.length > 0) {
-      navigate(`/search/${search}`);
+      navigate(`/SearchProduct?q=${search}`);
+
     }
   };
   return (
@@ -62,41 +64,7 @@ export const Navbar = () => {
               Vender
             </a>
           </div>
-          {/* <div className="md:hidden">
-            <button onClick={toggleNavbar}>{isOpen ? 'x' : 'Menu'}</button>
-          </div>
-          {isOpen && (
-            <div className="flex flex-col items-center basis-full">
-              <ul className="font-bold w-full h-auto text-black fixed top-[82px] flex-col items-center justify-center gap-10 left-0 z-[100] bg-white lg:hidden border border-black">
-                <li className="border border-black">
-                  <a
-                    className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border border-black border-opacity-50"
-                    href="#"
-                  >
-                    Categorías
-                  </a>
-                  <a
-                    className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border border-black border-opacity-50"
-                    href="#"
-                  >
-                    SECCIÓN 2
-                  </a>
-                  <a
-                    className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border border-black border-opacity-50"
-                    href="#"
-                  >
-                    SECCIÓN 3
-                  </a>
-                  <a
-                    className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border-t border-black border-opacity-50"
-                    href="#"
-                  >
-                    Vender
-                  </a>
-                </li>
-              </ul>
-            </div>
-          )} */}
+
 
           <div className="lg:flex lg:gap-10 lg:mr-10 lg:ml-10 flex flex-row gap-20 items-center justify-between md:flex md:flex-row md:justify-between  ">
             {/* reponsive nav */}
@@ -140,6 +108,7 @@ export const Navbar = () => {
               <input
                 onChange={(e) => setSearch(e.target.value)}
                 type="text"
+                name='searchInput'
                 value={search}
                 className="block relative lg:flex w-[200px] h-7 lg:h-9 lg:w-[400px] rounded-full border-none bg-gradient-to-r from-[#4f1f57] to-[#2f0f35] pl-5 pr-12 text-[#d8d8d8] outline-none focus:cursor-text font-normal searchValue"
               />
