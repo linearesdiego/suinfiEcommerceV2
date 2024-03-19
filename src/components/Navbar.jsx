@@ -4,10 +4,10 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/Auth';
 
 //images
-import logoSuinfi from '../assets/suinfiIconNavbar.png'
-import searchLogin from '../assets/searchIcon.png'
-import shopping from '../assets/ShoppingCart.png'
-import userLogin from '../assets/userIconNavBar.png'
+import logoSuinfi from '../assets/suinfiIconNavbar.png';
+import searchLogin from '../assets/searchIcon.png';
+import shopping from '../assets/ShoppingCart.png';
+import userLogin from '../assets/userIconNavBar.png';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,13 +15,10 @@ export const Navbar = () => {
   const [search, setSearch] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
-
   const navigate = useNavigate();
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
-
-
 
   const handleShowModal = () => {
     if (dataLogin.userLogin) {
@@ -35,7 +32,6 @@ export const Navbar = () => {
     e.preventDefault();
     if (search.length > 0) {
       navigate(`/SearchProduct?q=${search}`);
-
     }
   };
   return (
@@ -44,11 +40,7 @@ export const Navbar = () => {
         <div className="text-base text-[#d8d8d8] lg:text-lg font-semibold flex flex-row  w-full md:justify-between md:items-center">
           <div className="lg:flex gap-20 items-center hidden">
             <Link to="/" className="lg:text-base lg:font-semibold">
-              <img
-                src={logoSuinfi}
-                alt=""
-                className="min-w-7 ml-7"
-              />
+              <img src={logoSuinfi} alt="" className="min-w-7 ml-7" />
             </Link>
 
             <a className="block hover:text-[#9468a9] text-nowrap" href="#">
@@ -64,7 +56,6 @@ export const Navbar = () => {
               Vender
             </a>
           </div>
-
 
           <div className="lg:flex lg:gap-10 lg:mr-10 lg:ml-10 flex flex-row gap-20 items-center justify-between md:flex md:flex-row md:justify-between  ">
             {/* reponsive nav */}
@@ -108,7 +99,7 @@ export const Navbar = () => {
               <input
                 onChange={(e) => setSearch(e.target.value)}
                 type="text"
-                name='searchInput'
+                name="searchInput"
                 value={search}
                 className="block relative lg:flex w-[200px] h-7 lg:h-9 lg:w-[400px] rounded-full border-none bg-gradient-to-r from-[#4f1f57] to-[#2f0f35] pl-5 pr-12 text-[#d8d8d8] outline-none focus:cursor-text font-normal searchValue"
               />
@@ -119,9 +110,7 @@ export const Navbar = () => {
               />
             </form>
 
-            <Link
-              to={dataLogin.userLogin ? '/profile/account' : '/auth#login'}
-            >
+            <Link to={dataLogin.userLogin ? '/profile/account' : '/auth#login'}>
               <img
                 src={userLogin}
                 alt=""
@@ -129,7 +118,7 @@ export const Navbar = () => {
               />
             </Link>
 
-            <a onClick={() => handleShowModal()} className="carrito relative">
+            <a onClick={() => handleShowModal()} className="relative">
               <img
                 src={shopping}
                 alt=""

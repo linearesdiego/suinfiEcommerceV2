@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAuth } from '../context/Auth';
-import { createCart, fetchOneCart, removeProductFromCart } from '../services/Carrito';
+import {
+  createCart,
+  fetchOneCart,
+  removeProductFromCart,
+} from '../services/Carrito';
 import { fetchPagos } from '../services/Pagos';
-//images 
-import mp from '../assets/logo-mp.png'
+//images
+import mp from '../assets/logo-mp.png';
 export const ModalCarrito = () => {
   const { cartResponse, dataLogin, showModal, setShowModal } = useAuth();
   const [cart, setCart] = useState();
@@ -111,18 +115,17 @@ export const ModalCarrito = () => {
   }, [cartResponse]);
 
   const handleDeleteCart = (id) => {
-    removeProductFromCart(dataLogin.payload.carritoId, id).then(
-      (response) => {
-        /*  if(response){
+    removeProductFromCart(dataLogin.payload.carritoId, id).then((response) => {
+      /*  if(response){
 
         } */
-      }
-    );
+    });
   };
   return (
     <div
-      className={`w-[500px] ${verMas ? 'h-auto' : 'h-[250px]'
-        } bg-white rounded-xl text-zinc-900 flex p-8 relative`}
+      className={`w-[500px] ${
+        verMas ? 'h-auto' : 'h-[250px]'
+      } bg-white rounded-xl text-zinc-900 flex p-8 relative`}
     >
       <p
         onClick={() => {
@@ -251,14 +254,6 @@ export const ModalCarrito = () => {
                     <p>
                       {item.CarritoArticulo.cantidad}x{item.precio}
                     </p>
-                    {verMas && (
-                      <button
-                        onClick={() => handleDeleteCart(item.id)}
-                        className="border-none bg-transparent text-cyan-700"
-                      >
-                        eliminar
-                      </button>
-                    )}
                   </div>
 
                   {!verMas && (
@@ -306,12 +301,7 @@ export const ModalCarrito = () => {
                 className="p-[7px] bg-[#009ee3] mt-4 rounded-xl text-white flex justify-center text-center items-center"
               >
                 ¡Pagar con MERCADO PAGO!
-                <img
-                  width={40}
-                  height={40}
-                  src={mp}
-                  alt="logo-mp"
-                />
+                <img width={40} height={40} src={mp} alt="logo-mp" />
               </button>
               <button
                 onClick={() => {

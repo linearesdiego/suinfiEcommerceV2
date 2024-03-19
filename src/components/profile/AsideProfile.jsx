@@ -14,14 +14,15 @@ import { Security } from './Security';
 
 export const AsideProfile = () => {
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const isActive = (path) => location.pathname === path;
   const { logout } = useAuth();
   //function to edit hover:buttons on paths
   const buttonClasses = (path) => `
   flex items-center mx-0 my-0 rounded-md p-4 transition duration-300
-  ${isActive(path) ? 'bg-[#7637839C] ' : 'bg-[#37133E]'
-    } hover:bg-[#7637839C] cursor-pointer gap-2
+  ${
+    isActive(path) ? 'bg-[#7637839C] ' : 'bg-[#37133E]'
+  } hover:bg-[#7637839C] cursor-pointer gap-2
 `;
 
   const handleLogout = () => {
@@ -86,7 +87,7 @@ export const AsideProfile = () => {
           <button
             type="button"
             onClick={handleLogout}
-            className={buttonClasses('/profile/cards')}
+            className="flex items-center mx-0 my-0 rounded-md p-4 transition duration-300 hover:bg-[#7637839C]"
           >
             <img
               src={logoutPic}
