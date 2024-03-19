@@ -46,15 +46,15 @@ export const Navbar = () => {
             <a className="block hover:text-[#9468a9] text-nowrap" href="#">
               Categorías
             </a>
-            <a className="block hover:text-[#9468a9] text-nowrap" href="#">
-              SECCIÓN 2
-            </a>
-            <a className="block hover:text-[#9468a9] text-nowrap" href="#">
-              SECCIÓN 3
-            </a>
-            <a className="block hover:text-[#9468a9] text-nowrap" href="#">
-              Vender
-            </a>
+
+            {
+              dataLogin.userLogin && <Link
+                className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border-t border-black border-opacity-50"
+                to="/newProduct"
+              >
+                Vender
+              </Link>
+            }
           </div>
 
           <div className="lg:flex lg:gap-10 lg:mr-10 lg:ml-10 flex flex-row gap-20 items-center justify-between md:flex md:flex-row md:justify-between  ">
@@ -69,7 +69,7 @@ export const Navbar = () => {
                     >
                       Categorías
                     </a>
-                    <a
+                    {/* <a
                       className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border border-black border-opacity-50"
                       href="#"
                     >
@@ -80,13 +80,16 @@ export const Navbar = () => {
                       href="#"
                     >
                       SECCIÓN 3
-                    </a>
-                    <a
-                      className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border-t border-black border-opacity-50"
-                      href="#"
-                    >
-                      Vender
-                    </a>
+                    </a> */}
+                    {
+                      dataLogin.userLogin && <a
+                        className="hover:text-white transition-opacity duration-700 ease-in-out hover:opacity-80 block w-full text-center border-t border-black border-opacity-50"
+                        href="#"
+                      >
+                        Vender
+                      </a>
+                    }
+
                   </li>
                 </ul>
               </div>
