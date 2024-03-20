@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Alerts = ({ condition }) => {
+export const Alerts = ({ condition, parrafo }) => {
   return (
     <div className="absolute left-0 w-full h-auto flex justify-center items-center z-50">
       <div className="w-11/12 sm:w-2/3 lg:w-1/2 mt-3 bg-[#F9FAFA] rounded-md border border-gray-300 p-6 sm:p-16 py-10 flex flex-col items-center justify-center z-50">
@@ -50,7 +50,7 @@ export const Alerts = ({ condition }) => {
             </h1>
             <br></br>
             <p className="font-light text-sm sm:text-md leading-7 text-[#4F575D] text-center">
-              Something went wrong with your registration.
+              {parrafo}
             </p>
             <p className="font-light text-sm sm:text-md leading-7 text-[#4F575D] text-center">
               Please check your credentials and try again.

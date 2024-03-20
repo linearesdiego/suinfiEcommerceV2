@@ -33,13 +33,13 @@ export const Register = () => {
         reset();
         window.location.reload();
         navigate('/auth#login');
-      }, 6000);
+      }, 4000);
     } catch (error) {
       setShowAlert(true);
       setCondition(false);
       setTimeout(() => {
         setShowAlert(false);
-      }, 6000);
+      }, 4000);
 
       console.log('AXIOS ERROR', error);
     }
@@ -57,7 +57,12 @@ export const Register = () => {
 
   return (
     <>
-      {showAlert && <Alerts condition={condition} />}
+      {showAlert && (
+        <Alerts
+          condition={condition}
+          parrafo={'Something went wrong with your registration.'}
+        />
+      )}
       <div className="w-full h-[442px] flex justify-center items-center relative">
         <h1 className="absolute top-[12%] font-bold text-4xl md:hidden">
           SIGN IN
