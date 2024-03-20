@@ -14,7 +14,7 @@ export const SearchProduct = () => {
   const [dataSearch, setDataSearch] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // Inicializar isLoading en false
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // Búsqueda por consulta
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export const SearchProduct = () => {
       </div>
       <div className="w-full h-full min-h-screen bgnewProduct">
         <div className="lg:w-full lg:flex lg:flex-row h-full ">
-          <div className=" lg:w-[30%] h-full flex items-center ">
+          <div className="hidden lg:w-[30%] h-full lg:flex items-center ">
             {!isLoading && dataSearch.length >= 1 && (
               <div className="text-white bg-[#37133E] min-h-screen  h-full w-full my-auto">
                 <div className="py-10 px-7 h-full">
@@ -118,9 +118,9 @@ export const SearchProduct = () => {
 
           <div className="w-full h-full bgSearch p-7">
             {/* Map of products */}
-            {
-              !isLoading && dataSearch.map((item) => (
-                <div className="bg-white lg:h-[300px] lg:w-full rounded-lg shadow-[0px_4px_4px_0px_#00000040] border border-[#0000004D] lg:mt-5">
+            {!isLoading &&
+              dataSearch.map((item) => (
+                <div className="bg-white lg:p-0 p-5 lg:h-[300px] lg:w-full rounded-lg shadow-[0px_4px_4px_0px_#00000040] border border-[#0000004D] lg:mt-5">
                   <div className="lg:w-full lg:flex lg:flex-row lg:py-5">
                     <div className="lg:w-[25%] lg:px-5 lg:h-full">
                       <div className="">
@@ -131,7 +131,7 @@ export const SearchProduct = () => {
                                 <img
                                   src={itemCard.imagenNew}
                                   alt="article img"
-                                  className=" rounded-full"
+                                  className=" "
                                 />
                               </div>
                             )
