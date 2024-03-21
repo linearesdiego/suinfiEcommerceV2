@@ -1,20 +1,32 @@
-//We indicate that we are working on the client side
 //Imports
 //Service import
+import fetchArticles from '../services/Articles';
 //Native imports
 import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 //Components imports
 import { Loader } from './Loader';
-import fetchArticles from '../services/Articles';
-import { useLocation, useNavigate } from 'react-router-dom';
+
 export const SearchProduct = () => {
+  //Url with the searched query
   const searchParams = useLocation();
   const searchParamss = new URLSearchParams(searchParams.search);
+  //query
   const searchText = searchParamss.get('q');
+  //state to consume the api
   const [dataSearch, setDataSearch] = useState([]);
+  //state to loader
   const [isLoading, setIsLoading] = useState(false); // Inicializar isLoading en false
-
+  //Use navigate
   const navigate = useNavigate();
+
+  // responsive sidebar
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
   // Búsqueda por consulta
 
   useEffect(() => {
@@ -69,8 +81,94 @@ export const SearchProduct = () => {
       <div className="w-full items-center flex justify-center bgnewProduct ">
         {isLoading && <Loader />}
       </div>
-      <div className="w-full h-full min-h-screen bgnewProduct">
+      <div className="w-full h-full min-h-screen bgnewProduct ">
         <div className="lg:w-full lg:flex lg:flex-row h-full ">
+          <div className="lg:hidden relative  text-white bg-[#37133E] border border-[#855E98]">
+            <div className="flex justify-between items-center containerWidth">
+              <p>resultados</p>
+              <button onClick={toggleSidebar}>
+                {isOpen ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="none"
+                      stroke="#ffffff"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M18 6L6 18M6 6l12 12"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="40"
+                    height="40"
+                    viewBox="0 0 15 15"
+                  >
+                    <path
+                      fill="#ffffff"
+                      fill-rule="evenodd"
+                      d="M7.5 3.1a.4.4 0 1 0 0 .8h7a.4.4 0 0 0 0-.8zm0 2a.4.4 0 1 0 0 .8h7a.4.4 0 0 0 0-.8zm-.4 2.4c0-.22.18-.4.4-.4h7a.4.4 0 0 1 0 .8h-7a.4.4 0 0 1-.4-.4m.4 1.6a.4.4 0 1 0 0 .8h7a.4.4 0 0 0 0-.8zm-.4 2.4c0-.22.18-.4.4-.4h7a.4.4 0 0 1 0 .8h-7a.4.4 0 0 1-.4-.4M2.5 9.25L5 6H0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+          </div>
+          {isOpen && (
+            <div className="flex flex-col items-end mr-7 ">
+              <ul className="font-bold w-[50%] h-auto text-black top-[82px] flex-col items-center justify-center gap-10 left-0 z-[100] bg-white lg:hidden border  border-[#855E98] ">
+                <li className="border border-[#855E98]">
+                  <div className="text-white bg-[#37133E] absolute  p-5">
+                    <div className="py-10 px-7 h-full">
+                      <h1 className="text-xl font-semibold">
+                        BUSQUEDAS RELACIONADAS:
+                      </h1>
+                    </div>
+                    <div className="h-full px-7">
+                      <div className="flex flex-row gap-3">
+                        {' '}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="25"
+                          height="25"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fill="#ffffff"
+                            d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5q0-2.725 1.888-4.612T9.5 3q2.725 0 4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5q0-1.875-1.312-3.187T9.5 5Q7.625 5 6.313 6.313T5 9.5q0 1.875 1.313 3.188T9.5 14"
+                          />
+                        </svg>
+                        BUSQUEDA
+                      </div>
+                      <div className="lg:pt-10">
+                        <div className="flex flex-row gap-3">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="25"
+                            height="25"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              fill="#ffffff"
+                              d="M3 18v-2h18v2zm0-5v-2h18v2zm0-5V6h18v2z"
+                            />
+                          </svg>
+                          FILTROS
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          )}
           <div className="hidden lg:w-[30%] h-full lg:flex items-center ">
             {!isLoading && dataSearch.length >= 1 && (
               <div className="text-white bg-[#37133E] min-h-screen  h-full w-full my-auto">
