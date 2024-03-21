@@ -78,10 +78,10 @@ export const SearchProduct = () => {
 
   return (
     <>
-      <div className="w-full items-center flex justify-center bgnewProduct ">
-        {isLoading && <Loader />}
-      </div>
-      <div className="w-full h-full min-h-screen bgnewProduct ">
+      <div className="w-full h-full min-h-screen bgnewProduct relative">
+        <div className="absolute transform left-1/2 top-1/2  -translate-x-1/2 -translate-y-1/2 ">
+          {isLoading && <Loader />}
+        </div>
         <div className="lg:w-full lg:flex lg:flex-row h-full ">
           <div className="lg:hidden relative  text-white bg-[#37133E] border border-[#855E98]">
             <div className="flex justify-between items-center containerWidth">
@@ -218,7 +218,7 @@ export const SearchProduct = () => {
             {/* Map of products */}
             {!isLoading &&
               dataSearch.map((item) => (
-                <div className="bg-white lg:p-0 p-5 lg:h-[300px] lg:w-full rounded-lg shadow-[0px_4px_4px_0px_#00000040] border border-[#0000004D] lg:mt-5">
+                <div className="bg-white lg:p-0 p-5 lg:h-[300px]  lg:w-full rounded-lg shadow-[0px_4px_4px_0px_#00000040] border border-[#0000004D] mt-5 ">
                   <div className="lg:w-full lg:flex lg:flex-row lg:py-5">
                     <div className="lg:w-[25%] lg:px-5 lg:h-full">
                       <div className="">
