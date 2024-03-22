@@ -107,7 +107,7 @@ export const Products = () => {
               key={item.id}
               className="flex items-center justify-center"
             >
-              <div className="w-[300px] h-[460px] flex flex-col justify-center items-center gap-2">
+              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item pb-7 pt-7 ">
                 <a
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
@@ -127,7 +127,7 @@ export const Products = () => {
                     )}
                   </div>
 
-                  <div className="text-center">
+                  <div className="text-center ">
                     <p className="font-semibold text-sm lg:w-[100%] text-black">
                       {item.nombre}
                     </p>
@@ -145,6 +145,14 @@ export const Products = () => {
                           <img src={imgInstalacion} alt="etiqueta" />
                         </div>
                       </div>
+                    </div>
+                    <div className="group/edit invisible group-hover/item:visible w-full h-full flex justify-evenly py-5 pb-5">
+                      <button className="text-white group-hover/edit: py-2 px-5 border border-gray-400 rounded-full text-lg bg-zinc-700 font-bold">
+                        COMPRAR
+                      </button>
+                      <button className="text-black group-hover/edit:  py-2 px-10 border border-gray-400 rounded-full text-lg bg-transparent font-bold">
+                        VER
+                      </button>
                     </div>
                   </div>
                 </a>
@@ -182,7 +190,7 @@ export const Products = () => {
               className="flex items-center justify-center"
               key={item.id}
             >
-              <div className="w-[300px] h-[460px] flex flex-col justify-center items-center gap-2">
+              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item pb-7 pt-7 ">
                 <a
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
@@ -220,6 +228,14 @@ export const Products = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="group/edit invisible group-hover/item:visible w-full h-full flex justify-evenly py-5 pb-5">
+                      <button className="text-white group-hover/edit: py-2 px-5 border border-gray-400 rounded-full text-lg bg-zinc-700 font-bold">
+                        COMPRAR
+                      </button>
+                      <button className="text-black group-hover/edit:  py-2 px-10 border border-gray-400 rounded-full text-lg bg-transparent font-bold">
+                        VER
+                      </button>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -256,7 +272,7 @@ export const Products = () => {
               key={item.id}
               className="flex items-center justify-center"
             >
-              <div className="w-[300px] h-[460px] flex flex-col justify-center items-center gap-2">
+              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item pb-7 pt-7 ">
                 <a
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
@@ -294,6 +310,14 @@ export const Products = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="group/edit invisible group-hover/item:visible w-full h-full flex justify-evenly py-5 pb-5">
+                      <button className="text-white group-hover/edit: py-2 px-5 border border-gray-400 rounded-full text-lg bg-zinc-700 font-bold">
+                        COMPRAR
+                      </button>
+                      <button className="text-black group-hover/edit:  py-2 px-10 border border-gray-400 rounded-full text-lg bg-transparent font-bold">
+                        VER
+                      </button>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -330,7 +354,7 @@ export const Products = () => {
               key={item.id}
               className="flex items-center justify-center"
             >
-              <div className="w-[300px] h-[460px] flex flex-col justify-center items-center gap-2">
+              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item pb-7 pt-7 ">
                 <a
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
@@ -367,6 +391,14 @@ export const Products = () => {
                           <img src={imgInstalacion} alt="etiqueta" />
                         </div>
                       </div>
+                    </div>
+                    <div className="group/edit invisible group-hover/item:visible w-full h-full flex justify-evenly py-5 pb-5">
+                      <button className="text-white group-hover/edit: py-2 px-5 border border-gray-400 rounded-full text-lg bg-zinc-700 font-bold">
+                        COMPRAR
+                      </button>
+                      <button className="text-black group-hover/edit:  py-2 px-10 border border-gray-400 rounded-full text-lg bg-transparent font-bold">
+                        VER
+                      </button>
                     </div>
                   </div>
                 </a>
