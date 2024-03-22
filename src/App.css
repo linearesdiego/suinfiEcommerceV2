@@ -8,10 +8,13 @@
 
 .bg-ecommerce {
   width: 100%;
-  background: url('./assets/backgroundEcommerce.png') center center/cover
-      no-repeat,
-    linear-gradient(4.4deg, #5b1b67 -18.98%, #0e040f 100.96%);
   height: auto;
+  background: linear-gradient(
+    180deg,
+    #080609 0%,
+    #bcbabd 32.09%,
+    rgba(223, 223, 223, 0) 62.31%
+  );
 }
 
 /* Auth Menu desing */
