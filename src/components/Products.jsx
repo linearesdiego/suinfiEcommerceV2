@@ -107,7 +107,7 @@ export const Products = () => {
               key={item.id}
               className="flex items-center justify-center"
             >
-              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item pb-7 pt-7 ">
+              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item py-7 px-5">
                 <a
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
@@ -190,7 +190,7 @@ export const Products = () => {
               className="flex items-center justify-center"
               key={item.id}
             >
-              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item pb-7 pt-7 ">
+              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item py-7 px-5">
                 <a
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
@@ -272,7 +272,7 @@ export const Products = () => {
               key={item.id}
               className="flex items-center justify-center"
             >
-              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item pb-7 pt-7 ">
+              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item py-7 px-5">
                 <a
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
@@ -354,7 +354,7 @@ export const Products = () => {
               key={item.id}
               className="flex items-center justify-center"
             >
-              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item pb-7 pt-7 ">
+              <div className="w-[300px] h-[600px] flex flex-col justify-center items-center gap-2 hover:border hover:border-opacity-50 hover:border-gray-800 hover:bg-[#DAD8DB]        rounded-lg group/item py-7 px-5">
                 <a
                   onClick={() => handleClickById(item.id)}
                   className="cursor-pointer"
