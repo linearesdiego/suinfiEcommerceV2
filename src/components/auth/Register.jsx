@@ -85,7 +85,11 @@ export const Register = () => {
                       className="absolute left-0 top-1/2 transform -translate-y-1/2"
                     />
                     <input
-                      {...registerValidator('username', { required: true })}
+                      {...registerValidator('username', {
+                        required: true,
+                        minLength: 3,
+                        maxLength: 15,
+                      })}
                       type="text"
                       placeholder="Username"
                       name="username"
@@ -98,6 +102,18 @@ export const Register = () => {
                         Username is required
                       </span>
                     )}
+                    {errors.username &&
+                      errors.username.type === 'minLength' && (
+                        <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                          Username min 3
+                        </span>
+                      )}
+                    {errors.username &&
+                      errors.username.type === 'maxLength' && (
+                        <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                          Username max 15
+                        </span>
+                      )}
                   </div>
                 </div>
 
@@ -110,7 +126,12 @@ export const Register = () => {
                       className="absolute left-0 top-1/2 transform -translate-y-1/2"
                     />
                     <input
-                      {...registerValidator('nombre', { required: true })}
+                      {...registerValidator('nombre', {
+                        required: true,
+                        pattern: /^[A-Za-zÁÉÍÓÚáéíóú]+$/,
+                        minLength: 3,
+                        maxLength: 15,
+                      })}
                       type="text"
                       placeholder="Name"
                       className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
@@ -124,6 +145,21 @@ export const Register = () => {
                         Name is required
                       </span>
                     )}
+                    {errors.nombre && errors.nombre.type === 'pattern' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Only letters and no spaces
+                      </span>
+                    )}
+                    {errors.nombre && errors.nombre.type === 'minLength' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Name min 3
+                      </span>
+                    )}
+                    {errors.nombre && errors.nombre.type === 'maxLength' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Name max 15
+                      </span>
+                    )}
                   </div>
                 </div>
                 {/* lastname */}
@@ -135,7 +171,12 @@ export const Register = () => {
                       className="absolute left-0 top-1/2 transform -translate-y-1/2"
                     />
                     <input
-                      {...registerValidator('apellido', { required: true })}
+                      {...registerValidator('apellido', {
+                        required: true,
+                        pattern: /^[A-Za-zÁÉÍÓÚáéíóú]+$/,
+                        minLength: 3,
+                        maxLength: 15,
+                      })}
                       type="text"
                       placeholder="Lastname"
                       name="apellido"
@@ -149,6 +190,23 @@ export const Register = () => {
                         Lastname is required
                       </span>
                     )}
+                    {errors.apellido && errors.apellido.type === 'pattern' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Only letters and no spaces
+                      </span>
+                    )}
+                    {errors.apellido &&
+                      errors.apellido.type === 'minLength' && (
+                        <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                          Name min 3
+                        </span>
+                      )}
+                    {errors.apellido &&
+                      errors.apellido.type === 'maxLength' && (
+                        <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                          Name max 15
+                        </span>
+                      )}
                   </div>
                 </div>
                 {/* email */}
@@ -160,7 +218,12 @@ export const Register = () => {
                       className="absolute left-0 top-1/2 transform -translate-y-1/2"
                     />
                     <input
-                      {...registerValidator('email', { required: true })}
+                      {...registerValidator('email', {
+                        required: true,
+                        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                        minLength: 3,
+                        maxLength: 15,
+                      })}
                       type="email"
                       placeholder="Email"
                       name="email"
@@ -172,6 +235,21 @@ export const Register = () => {
                     {errors.email && errors.email.type === 'required' && (
                       <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
                         Email is required
+                      </span>
+                    )}
+                    {errors.email && errors.email.type === 'pattern' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Enter a valid email address
+                      </span>
+                    )}
+                    {errors.email && errors.email.type === 'minLength' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Email min 3
+                      </span>
+                    )}
+                    {errors.email && errors.email.type === 'maxLength' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Email max 15
                       </span>
                     )}
                   </div>
@@ -230,7 +308,12 @@ export const Register = () => {
                       className="absolute left-0 top-1/2 transform -translate-y-1/2"
                     />
                     <input
-                      {...registerValidator('cedula', { required: true })}
+                      {...registerValidator('cedula', {
+                        required: true,
+                        validate: (value) => !isNaN(value),
+                        minLength: 3,
+                        maxLength: 15,
+                      })}
                       type="text"
                       placeholder="Cedula"
                       name="cedula"
@@ -242,6 +325,21 @@ export const Register = () => {
                     {errors.cedula && errors.cedula.type === 'required' && (
                       <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
                         Cedula is required
+                      </span>
+                    )}
+                    {errors.cedula && errors.cedula.type === 'validate' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Enter a valid cedula
+                      </span>
+                    )}
+                    {errors.cedula && errors.cedula.type === 'minLength' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Cedula min 3
+                      </span>
+                    )}
+                    {errors.cedula && errors.cedula.type === 'maxLength' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Cedula max 15
                       </span>
                     )}
                   </div>
@@ -258,6 +356,8 @@ export const Register = () => {
                       {...registerValidator('celular', {
                         required: true,
                         validate: (value) => !isNaN(value),
+                        minLength: 3,
+                        maxLength: 16,
                       })}
                       type="text"
                       placeholder="Cellphone"
@@ -274,7 +374,17 @@ export const Register = () => {
                     )}
                     {errors.celular && errors.celular.type === 'validate' && (
                       <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
-                        Please enter a valid phone number
+                        Enter a valid phone number
+                      </span>
+                    )}
+                    {errors.celular && errors.celular.type === 'minLength' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Cellphone min 3
+                      </span>
+                    )}
+                    {errors.celular && errors.celular.type === 'maxLength' && (
+                      <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                        Cellphone max 15
                       </span>
                     )}
                   </div>
@@ -288,9 +398,13 @@ export const Register = () => {
                       className="absolute left-0 top-1/2 transform -translate-y-1/2"
                     />
                     <input
-                      {...registerValidator('direccion', { required: true })}
+                      {...registerValidator('direccion', {
+                        required: true,
+                        minLength: 3,
+                        maxLength: 20,
+                      })}
                       type="text"
-                      placeholder="Direccion"
+                      placeholder="Adress"
                       className="border-black border-b-[1px] pl-8 w-[250px] sm:w-[400px] md:w-[300px] outline-none"
                       name="direccion"
                       /*  value={userData.direccion}
@@ -300,7 +414,19 @@ export const Register = () => {
                     {errors.direccion &&
                       errors.direccion.type === 'required' && (
                         <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
-                          Direccion is required
+                          Adress is required
+                        </span>
+                      )}
+                    {errors.direccion &&
+                      errors.direccion.type === 'minLength' && (
+                        <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                          Adress min 3
+                        </span>
+                      )}
+                    {errors.direccion &&
+                      errors.direccion.type === 'maxLength' && (
+                        <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                          Adress max 20
                         </span>
                       )}
                   </div>
@@ -341,7 +467,11 @@ export const Register = () => {
                       className="absolute left-0 top-1/2 transform -translate-y-1/2"
                     />
                     <input
-                      {...registerValidator('password', { required: true })}
+                      {...registerValidator('password', {
+                        required: true,
+                        minLength: 5,
+                        maxLength: 20,
+                      })}
                       type="password"
                       placeholder="Password"
                       name="password"
@@ -355,6 +485,18 @@ export const Register = () => {
                         Password is required
                       </span>
                     )}
+                    {errors.password &&
+                      errors.password.type === 'minLength' && (
+                        <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                          Password min 3
+                        </span>
+                      )}
+                    {errors.password &&
+                      errors.password.type === 'maxLength' && (
+                        <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
+                          Password max 20
+                        </span>
+                      )}
                   </div>
                 </div>
                 {/* confirm password */}
