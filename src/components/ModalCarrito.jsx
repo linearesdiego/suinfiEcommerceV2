@@ -123,9 +123,9 @@ export const ModalCarrito = () => {
   };
   return (
     <div
-      className={`w-[500px] ${
+      className={`md:w-[500px] ${
         verMas ? 'h-auto' : 'h-[250px]'
-      } bg-white rounded-xl text-zinc-900 flex p-8 relative`}
+      } bg-white md:rounded-xl text-zinc-900 flex p-8 relative`}
     >
       <p
         onClick={() => {
@@ -257,7 +257,7 @@ export const ModalCarrito = () => {
                   </div>
 
                   {!verMas && (
-                    <p className="font-extrabold">
+                    <p className="text-sm sm:text-lg font-extrabold">
                       ¡Agregado al carrito con éxito!
                     </p>
                   )}

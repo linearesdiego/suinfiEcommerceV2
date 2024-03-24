@@ -74,3 +74,14 @@
 .bgnewProduct {
   background: linear-gradient(180deg, #efd0ec 0%, #f8f8f8 100%);
 }
+
+.nav-bg {
+  background: linear-gradient(
+    90deg,
+    #38485f -4.06%,
+    #348ad9 30.95%,
+    #d69fd8 60.79%,
+    #df70d5 84.96%,
+    #c839c0 105.78%
+  );
+}
