@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -11,13 +10,15 @@ import 'swiper/css/autoplay';
 import { Pagination, Autoplay } from 'swiper/modules';
 
 //imagenes
-import slider1 from '../assets/slider1.png'
-import slider2 from '../assets/slider2.png'
-import slider3 from '../assets/slider3.png'
-import logoSuinfi from '../assets/suinfiHero.png'
-import money from '../assets/Money Bag.png'
-import online from '../assets/Online Support.png'
-import audi from '../assets/Audit.png'
+//import slider1 from '../assets/slider1.png';
+import slider2 from '../assets/slider2.png';
+import slider3 from '../assets/slider3.png';
+import logoSuinfi from '../assets/suinfiHero.png';
+import money from '../assets/Money Bag.png';
+import online from '../assets/Online Support.png';
+import audi from '../assets/Audit.png';
+import ofertSlider from '../assets/ofert slider.png';
+
 export const Carousel = () => {
   return (
     <>
@@ -31,23 +32,24 @@ export const Carousel = () => {
       >
         <SwiperSlide className="relative">
           <img
-            src={slider1}
+            src={ofertSlider}
             alt="banner-1"
-            className="w-full h-[420px] lg:h-[620px] object-cover"
+            className="w-full h-[42 0px] lg:h-[500px] "
           />
-          <div className="containerWidth">
+          {/* tenia 560px */}
+          {/* <div className="containerWidth">
             <img
               src={logoSuinfi}
               alt="banner-1"
               className="w-[100px] bottom-10 object-cover absolute lg:bottom-20 lg:w-[250px]"
             />
-          </div>
+          </div> */}
         </SwiperSlide>
         <SwiperSlide className="relative">
           <img
             src={slider2}
             alt="banner-1"
-            className="w-full h-[420px] lg:h-[620px] object-cover"
+            className="w-full h-[420px] lg:h-[500px] object-cover"
           />
           <div className="containerWidth">
             <img
@@ -61,7 +63,7 @@ export const Carousel = () => {
           <img
             src={slider3}
             alt="banner-1"
-            className="w-full h-[420px] lg:h-[620px] object-cover"
+            className="w-full h-[420px] lg:h-[500px] object-cover"
           />
           <div className="containerWidth">
             <img
@@ -84,11 +86,7 @@ export const Carousel = () => {
         </div>
         <div className="flex gap-4 justify-center">
           <div className="flex items-center">
-            <img
-              className="w-[50px]"
-              src={online}
-              alt="audit-icon"
-            />
+            <img className="w-[50px]" src={online} alt="audit-icon" />
           </div>
           <div className="flex justify-center flex-col leading-none">
             <h1 className="text-white font-bold text-xl">

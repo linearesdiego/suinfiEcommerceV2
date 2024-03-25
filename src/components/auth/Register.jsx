@@ -285,9 +285,9 @@ export const Register = () => {
                       defaultValue="" // Establecer el valor predeterminado aquí
                     >
                       <option value="" disabled hidden>
-                        Tipo de cedula
+                        Type of cedula
                       </option>
-                      <option value="dni">dni</option>
+                      <option value="dni">DNI</option>
                       <option value="add">add</option>
                     </select>
 
