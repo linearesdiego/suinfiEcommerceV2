@@ -5,14 +5,12 @@ import React from 'react';
 // import place from '../assets/Place Marker.png';
 export const Footer = () => {
   return (
-    <footer className="bg-gradient-to-t from-[#344A65] to-[#396691] mx-auto overflow-hidden h-1/3 h-50 lg:h-80">
-      <div className="w-full h-full mt-8 text-white flex flex-wrap text-[9px] sm:text-xs lg:text-base">
-        <div className="lg:mx-14 lg:my-6 sm:mx-7 sm:my-3 flex justify-bettwen lg:gap-5 w-full h-auto">
-          <div className="flex flex-col gap-5 w-1/4 m-0.5 ml-1 lg:m-2">
-            <h2 className="font-semibold lg:m-2 lg:mx-2 my-0">
-              Redes Sociales
-            </h2>
-            <div className="flex flex-col gap-1 lg:mx-2 my-0">
+    <footer className="bg-gradient-to-t from-[#344A65] to-[#396691] mx-auto overflow-hidden h-1/3 h-auto lg:h-80">
+      <div className="w-full h-full mt-8 text-white flex flex-wrap">
+        <div className="mx-1 my-0 lg:mx-14 lg:my-4 flex grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 relative justify-bettwen justify-center gap-1 md:gap-5 w-full h-full ">
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 w-full m-0.5 ml-1 m-2">
+            <h2 className="font-semibold m-2 mx-2 ">Redes Sociales</h2>
+            <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
                 Instagram
               </a>
@@ -27,8 +25,8 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col gap-8 sm:gap-8 md:gap-8 lg:gap-8 m-0.5 lg:m-2 w-1/4">
-            <h2 className="font-semibold lg:m-2">Acerca de</h2>
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-0.5 m-2 w-full">
+            <h2 className="font-semibold m-2">Acerca de</h2>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
                 SUINFI
@@ -41,8 +39,8 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col md:gap-8 gap-8 lg:gap-8 m-0.5 lg:m-2 w-1/4">
-            <h2 className="font-semibold lg:m-2">Otros Sitios</h2>
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-0.5 m-2 w-full">
+            <h2 className="font-semibold m-2">Otros Sitios</h2>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
                 Software Factory
@@ -52,8 +50,8 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col gap-5 sm:gap-8 md:gap-8 lg:gap-2 xl:gap-8 m-0.5 lg:m-2 w-1/3">
-            <h2 className="font-semibold lg:m-2">Contacto en Argentina</h2>
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-0.5 m-2 w-full">
+            <h2 className="font-semibold m-2">Contacto en Argentina</h2>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
                 Teléfono:+54 9 264 4585555
@@ -63,8 +61,8 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col gap-8 m-0.5 lg:m-2 w-1/3">
-            <h2 className="font-semibold lg:m-2">Contacto en UAE</h2>
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8m-0.5 m-2 w-full">
+            <h2 className="font-semibold m-2">Contacto en UAE</h2>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
                 Teléfono:+971 54 231 6393
@@ -78,8 +76,8 @@ export const Footer = () => {
           {/* <div className="flex flex-col gap-8 w-1/4 m-0.5 ml-1 lg:m-2">
             <h2 className="font-semibold lg:m-2 lg:mx-2 my-0">
               Redes Sociales */}
-          <div className="flex flex-col gap-8 md:gap-8 lg:gap-8 m-0.5 mr-1 lg:m-2 w-1/3">
-            <h2 className="font-semibold lg:m-2">Ayuda</h2>
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-2 w-full">
+            <h2 className="font-semibold m-2">Ayuda</h2>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
                 Comprar
