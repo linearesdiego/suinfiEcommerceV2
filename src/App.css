@@ -11,9 +11,18 @@
   height: auto;
   background: linear-gradient(
     180deg,
-    #080609 0%,
-    #bcbabd 32.09%,
+    #080609 4.98%,
+    #bcbabd 44.24%,
     rgba(223, 223, 223, 0) 62.31%
+  );
+}
+
+.bg-sidebar {
+  background: linear-gradient(
+    91.02deg,
+    #385170 3.38%,
+    #3583cc 98.3%,
+    #6b9cd7 98.3%
   );
 }
 
@@ -75,7 +84,12 @@
 }
 
 .bgnewProduct {
-  background: linear-gradient(180deg, #efd0ec 0%, #f8f8f8 100%);
+  background: linear-gradient(
+    180deg,
+    #f1f1f1 0%,
+    rgba(236, 236, 236, 0.42) 100%,
+    #ffffff 100%
+  );
 }
 
 .nav-bg {

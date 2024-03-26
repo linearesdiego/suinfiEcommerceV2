@@ -6,6 +6,9 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 //Components imports
 import { Loader } from './Loader';
+//img imports
+import imgInstalacion from '../assets/etiquetaInstalacion.png';
+import estrellaCalificacion from '../assets/estrellaCalificacion.png';
 
 export const SearchProduct = () => {
   //Url with the searched query
@@ -171,7 +174,7 @@ export const SearchProduct = () => {
           )}
           <div className="hidden lg:w-[30%] h-full lg:flex items-center ">
             {!isLoading && dataSearch.length >= 1 && (
-              <div className="text-white bg-[#37133E] min-h-screen  h-full w-full my-auto">
+              <div className="text-white bg-sidebar min-h-screen  h-full w-full my-auto">
                 <div className="py-10 px-7 h-full">
                   <h1 className="text-xl font-semibold">
                     BUSQUEDAS RELACIONADAS:
@@ -229,7 +232,7 @@ export const SearchProduct = () => {
                                 <img
                                   src={itemCard.imagenNew}
                                   alt="article img"
-                                  className=" "
+                                  className="h-[250px] w-[250px]"
                                 />
                               </div>
                             )
@@ -238,23 +241,64 @@ export const SearchProduct = () => {
                       {/* } } */}
                     </div>
 
-                    <div className="lg:h-full lg:w-full lg:flex lg:flex-col ">
-                      <div className="flex flex-col gap-10 pt-10 pb-5 ">
-                        <p className="text-2xl font-semibold uppercase">
-                          {item.nombre}
-                        </p>
-                        <p className="text-2xl font-normal flex flex-row text-start">
+                    <div className="lg:h-full lg:w-full lg:flex lg:flex-col max-w-[900px]">
+                      <div className="flex flex-col gap-10 pt-10  ">
+                        <div className="flex flex-row justify-between">
+                          <p className="text-2xl font-semibold uppercase">
+                            {item.nombre}
+                          </p>
+
+                          <span className="flex flex-row gap-1 items-center">
+                            <img
+                              src={estrellaCalificacion}
+                              alt="calificacion"
+                              className="w-[20px] h-[20px]"
+                            />
+                            <img
+                              src={estrellaCalificacion}
+                              alt="calificacion"
+                              className="w-[20px] h-[20px]"
+                            />
+                            <img
+                              src={estrellaCalificacion}
+                              alt="calificacion"
+                              className="w-[20px] h-[20px]"
+                            />
+                            <img
+                              src={estrellaCalificacion}
+                              alt="calificacion"
+                              className="w-[20px] h-[20px]"
+                            />
+                            <img
+                              src={estrellaCalificacion}
+                              alt="calificacion"
+                              className="w-[20px] h-[20px]"
+                            />
+                            <p>5.0</p>
+                          </span>
+                        </div>
+                        <div className="flex flex-col lg:mt-[-30px] text-xl text-[#F4D240]">
+                          <p>Mismo precio en 3 cuotas</p>
+                          <p>500000</p>
+                          <div className="flex flex-row gap-10">
+                            <p>Instalacion gratuita</p>
+                            <img src={imgInstalacion} alt="etiqueta" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full flex  justify-between">
+                        <p className="text-2xl font-semibold flex flex-row text-start items-center ">
                           <td>$</td>
                           {item.precio}
                         </p>
-                      </div>
-                      <div className="w-full flex justify-end pr-10">
-                        <button
-                          onClick={() => handleClickById(item.id)}
-                          className="w-[150px] text-center border-black border p-3 rounded-3xl font-bold"
-                        >
-                          VER
-                        </button>
+                        <div className="flex items-end">
+                          <button
+                            onClick={() => handleClickById(item.id)}
+                            className="w-[150px] z-10 text-center border-black border p-3 rounded-3xl font-bold block"
+                          >
+                            VER
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
