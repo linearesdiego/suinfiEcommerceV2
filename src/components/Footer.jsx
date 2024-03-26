@@ -5,10 +5,10 @@ import React from 'react';
 // import place from '../assets/Place Marker.png';
 export const Footer = () => {
   return (
-    <footer className="bg-gradient-to-t from-[#344A65] to-[#396691] mx-auto overflow-hidden h-1/3 h-auto lg:h-80">
-      <div className="w-full h-full mt-8 text-white flex flex-wrap">
-        <div className="mx-1 my-0 lg:mx-14 lg:my-4 flex grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 relative justify-bettwen justify-center gap-1 md:gap-5 w-full h-full ">
-          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 w-full m-0.5 ml-1 m-2">
+    <footer className="bg-gradient-to-t from-[#344A65] to-[#396691] mx-auto overflow-hidden h-auto lg:h-80">
+      <div className="containerWidth w-full h-full mt-8 text-white flex flex-wrap">
+        <div className="my-0 lg:my-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 relative justify-center gap-1 md:gap-5 w-full h-full ">
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 w-full ml-1 m-2">
             <h2 className="font-semibold m-2 mx-2 ">Redes Sociales</h2>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
@@ -25,7 +25,7 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-0.5 m-2 w-full">
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-2 w-full">
             <h2 className="font-semibold m-2">Acerca de</h2>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
@@ -39,7 +39,7 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-0.5 m-2 w-full">
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-2 w-full">
             <h2 className="font-semibold m-2">Otros Sitios</h2>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
@@ -50,7 +50,7 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-0.5 m-2 w-full">
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-2 w-full">
             <h2 className="font-semibold m-2">Contacto en Argentina</h2>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
@@ -61,7 +61,7 @@ export const Footer = () => {
               </a>
             </div>
           </div>
-          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8m-0.5 m-2 w-full">
+          <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-2 w-full">
             <h2 className="font-semibold m-2">Contacto en UAE</h2>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
