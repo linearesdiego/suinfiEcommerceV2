@@ -14,9 +14,6 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import slider2 from '../assets/slider2.png';
 import slider3 from '../assets/slider3.png';
 import logoSuinfi from '../assets/suinfiHero.png';
-import money from '../assets/Money Bag.png';
-import online from '../assets/Online Support.png';
-import audi from '../assets/Audit.png';
 import ofertSlider from '../assets/ofert slider.png';
 
 export const Carousel = () => {
@@ -74,37 +71,6 @@ export const Carousel = () => {
           </div>
         </SwiperSlide>
       </Swiper>
-      <div className="containerWidth w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full justify-between items-center relative gap-12">
-        <div className="flex gap-4 justify-start">
-          <div className="flex items-center">
-            <img className="w-[50px]" src={audi} alt="audit-icon" />
-          </div>
-          <div className="flex justify-center flex-col leading-none">
-            <h1 className="text-white font-bold text-xl">PERMANENT LICENSES</h1>
-            <p className="text-white text-lg">on all our products</p>
-          </div>
-        </div>
-        <div className="flex gap-4 justify-center">
-          <div className="flex items-center">
-            <img className="w-[50px]" src={online} alt="audit-icon" />
-          </div>
-          <div className="flex justify-center flex-col leading-none">
-            <h1 className="text-white font-bold text-xl">
-              PERSONALIZED ATTENTION
-            </h1>
-            <p className="text-white text-lg">on our social medias</p>
-          </div>
-        </div>
-        <div className="flex gap-4 justify-start lg:justify-end">
-          <div className="flex items-center">
-            <img className="w-[50px]" src={money} alt="audit-icon" />
-          </div>
-          <div className="flex justify-center flex-col leading-none">
-            <h1 className="text-white font-bold text-xl">EXCLUSIVE OFFERS</h1>
-            <p className="text-white text-lg">every day</p>
-          </div>
-        </div>
-      </div>
     </>
   );
 };
