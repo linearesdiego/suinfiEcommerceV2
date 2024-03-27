@@ -6,12 +6,14 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { WtspButton } from '../components/WtspButton';
 import { FeaturedProducts } from '../components/FeaturedProducts';
+import { CardsInfo } from '../components/CardsInfo';
 export const Home = () => {
   return (
     <>
       <Navbar />
       <div className="bg-ecommerce">
         <Carousel />
+        <CardsInfo/>
         <FeaturedProducts/>
         <Products />
         <Galery />
