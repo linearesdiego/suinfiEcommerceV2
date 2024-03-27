@@ -5,6 +5,7 @@ import ExplorarImg from '../../assets/Explorar.png';
 import ComprarImg from '../../assets/Comprar.png';
 import TusComprasImg from '../../assets/Tuscompras.png';
 import FiltrosImg from '../../assets/filtros.png';
+import productType from '../../assets/productType.png';
 
 export const YourProductsComp = () => {
   return (
@@ -45,9 +46,21 @@ export const YourProductsComp = () => {
             <p className="text-lg font-semibold">CATEGORIAS</p>
           </div>
           <div className="flex flex-col gap-2">
-            <p className="px-5 py-3">PRODUCTO 1</p>
-            <p className="px-5 py-3">PRODUCTO 2</p>
-            <p className="px-5 py-3">PRODUCTO 3</p>
+            <div className="flex flex-row items-center px-5">
+              <img src={productType} alt="" />
+
+              <p className="px-5 py-3">PRODUCTO 1</p>
+            </div>
+            <div className="flex flex-row items-center px-5">
+              <img src={productType} alt="" />
+
+              <p className="px-5 py-3">PRODUCTO 2</p>
+            </div>
+            <div className="flex flex-row items-center px-5">
+              <img src={productType} alt="" />
+
+              <p className="px-5 py-3">PRODUCTO 3</p>
+            </div>
           </div>
         </aside>
       </div>
