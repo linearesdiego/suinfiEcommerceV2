@@ -5,7 +5,6 @@ import { useAuth } from '../context/Auth';
 
 //images
 import logoSuinfi from '../assets/suinfiIconNavbar.png';
-import logoSuinfi2 from '../assets/logo-suinfi2.png';
 import searchLogin from '../assets/searchIcon.png';
 import shopping from '../assets/ShoppingCart.png';
 import userLogin from '../assets/userIconNavBar.png';
@@ -45,11 +44,6 @@ export const Navbar = () => {
               alt="suinfi-logo"
               className="h-[24px] w-[19px]"
             />
-            <img
-              src={logoSuinfi2}
-              alt="suinfi-logo"
-              className="hidden md:block w-[42px] h-[12px]"
-            />
           </Link>
         </div>
         <div className="hidden md:flex items-center text-white">
@@ -61,6 +55,13 @@ export const Navbar = () => {
           {dataLogin.userLogin && (
             <Link to="/newProduct" className="hover:cursor-pointer text-lg">
               Vender
+            </Link>
+          )}
+        </div>
+        <div className="hidden md:flex items-center text-white">
+          {dataLogin.userLogin && (
+            <Link to="/newProduct" className="hover:cursor-pointer text-lg">
+              Favoritos
             </Link>
           )}
         </div>
@@ -99,12 +100,20 @@ export const Navbar = () => {
           </div>
         </div>
         <div className="hidden md:flex items-center">
-          <Link to={dataLogin.userLogin ? '/profile/account' : '/auth#login'}>
+          <Link
+            to={dataLogin.userLogin ? '/profile/account' : '/auth#login'}
+            className="flex gap-3 items-center justify-center"
+          >
             <img
               src={userLogin}
               alt=""
               className="hover:cursor-pointer  min-w-7"
             />
+            <p className="text-white hidden text-sm uppercase font-semibold lg:block">
+              {dataLogin.userLogin
+                ? `${dataLogin.payload.nombre}`
+                : 'Iniciar Sesión'}
+            </p>
           </Link>
         </div>
         <div className="flex md:hidden">
