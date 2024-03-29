@@ -8,12 +8,14 @@ import { WtspButton } from '../components/WtspButton';
 import { FeaturedProducts } from '../components/FeaturedProducts';
 import { Items } from '../components/Items';
 
+import { CardsInfo } from '../components/CardsInfo';
 export const Home = () => {
   return (
     <>
       <Navbar />
       <div className="bg-ecommerce">
         <Carousel />
+        <CardsInfo />
         <FeaturedProducts />
         <Items />
         <Products />
