@@ -42,7 +42,7 @@ export const Carousel = () => {
             />
           </div> */}
         </SwiperSlide>
-         <SwiperSlide className="relative">
+        <SwiperSlide className="relative">
           <img
             src={slider2}
             alt="banner-1"
@@ -71,8 +71,7 @@ export const Carousel = () => {
           </div>
         </SwiperSlide>
       </Swiper>
-<<<<<<< HEAD
-       <div className="containerWidth w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full justify-between items-center relative gap-12">
+      <div className="containerWidth w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full justify-between items-center relative gap-12">
         <div className="flex gap-4 justify-start">
           <div className="flex items-center">
             <img className="w-[50px]" src={audi} alt="audit-icon" />
@@ -102,9 +101,7 @@ export const Carousel = () => {
             <p className="text-white text-lg">every day</p>
           </div>
         </div>
-      </div> 
-=======
->>>>>>> 3e571d13ede84c76966f9a9362cb7edb648c689e
+      </div>
     </>
   );
 };
