@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
 const baseUrl = import.meta.env.VITE_API_URL;
 //Fetching all articles
 const fetchArticles = async (search) => {
-  const urlAll = "articulos/findAll?limit=100&offset=1";
+  const urlAll = 'articulos/findAll?limit=100&offset=1';
   const urlSearch = `articulos/findAll?limit=100&offset=1&nombre=${
-    search ? search : ""
+    search ? search : ''
   }`;
   try {
     const response = await axios.get(
@@ -13,12 +13,12 @@ const fetchArticles = async (search) => {
     );
 
     if (response.status !== 200) {
-      throw new Error("Error al obtener los datos");
+      throw new Error('Error al obtener los datos');
     }
 
     return response.data;
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     throw error;
   }
 };
@@ -38,17 +38,24 @@ const fetchProductById = async (productId) => {
 
 export { fetchProductById };
 
-export const postProduct = async (data) => {
-  const urlCreate = "articulos";
+export const postProduct = async (data, token) => {
+  const urlCreate = 'articulos';
+
   try {
-    const response = await axios.post(`${baseUrl}${urlCreate}`, data);
+    const response = await axios.post(`${baseUrl}${urlCreate}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Include token with Bearer prefix
+        'Content-Type': 'application/json', // Ensure data is sent as JSON
+      },
+    });
+
     if (response.status !== 200) {
-      throw new Error("Error al crear el producto");
+      throw new Error('Error al crear el producto');
     }
 
     return response.data;
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
     throw error;
   }
 };

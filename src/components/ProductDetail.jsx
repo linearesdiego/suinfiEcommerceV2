@@ -27,12 +27,17 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     if (dataLogin?.userLogin) {
-      addProductToCart({
-        articuloId: product?.id,
-        precio: product?.precio,
-        cantidad: cantidad,
-        carritoId: dataLogin.payload.carritoId,
-      }).then((response) => {
+      const token = dataLogin.token;
+      console.log(token);
+      addProductToCart(
+        {
+          articuloId: product?.id,
+          precio: product?.precio,
+          cantidad: cantidad,
+          carritoId: dataLogin.payload.carritoId,
+        },
+        token
+      ).then((response) => {
         if (response) {
           setCartResponse(true);
           setShowModal(true);
