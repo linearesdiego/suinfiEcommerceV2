@@ -18,8 +18,94 @@ export const FeaturedProducts = () => {
   }, []);
   return (
     <>
-      <section className="containerWidth  w-full flex flex-col md:flex-row justify-between mb-4 ">
-        <div className=" w-full md:w-[500px] md:h-[480px] rounded-xl shadow-2xl overflow-hidden mb-4 md:mb-0 bg-[#efefef]">
+      <section className="containerWidth w-full flex flex-col lg:flex-row lg:justify-between gap-5 lg:gap-0">
+        <div className="w-full lg:w-[25%] lg:h-[450px] rounded-lg bg-[#e7e7e7] flex flex-col">
+          <h1 className="text-black text-2xl font-bold p-4 h-[15%]">
+            OFERTA DEL DÍA
+          </h1>
+          <div className="h-full flex justify-center items-center py-3 lg:py-0">
+            <div className="w-[70%] lg:w-[60%] flex flex-col justify-center items-center hover:bg-white rounded-2xl hover:shadow-2xl px-4 cursor-pointer">
+              <img src="/acad.png" alt="img-3" />
+              <div className="w-[95%]">
+                <p className="text-white bg-yellow-500 font-bold text-center w-[70%]">
+                  OFERTA DEL DÍA
+                </p>
+                <h2 className="text-black text-3xl font-semibold ">
+                  $0000,00{' '}
+                  <span className="text-yellow-500 font-semibold text-sm">
+                    21% OFF
+                  </span>
+                </h2>
+                <p className="text-yellow-500">
+                  Mismo precio en 3 cuotas de $0000,00
+                </p>
+                <h1 className="text-lg font-semibold">AutoCAD 2023</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full lg:w-[70%] lg:h-[450px] rounded-lg bg-[#e7e7e7] flex flex-col">
+          <h1 className="text-black text-2xl font-bold p-4 h-[15%] w-full">
+            PRODUCTOS DESTACADOS
+          </h1>
+          <div className="w-full h-full flex flex-col justify-between items-center px-20 lg:flex-row gap-3 py-3 lg:py-0">
+            <div className="w-[240px] h-[85%] justify-center items-center flex flex-col hover:bg-white rounded-2xl hover:shadow-2xl cursor-pointer px-4">
+              <img src="/acad.png" alt="img-3" />
+              <div className="w-[95%] ">
+                <p className="text-white bg-yellow-500 font-bold text-center w-full">
+                  PRODUCTO DESTACADO
+                </p>
+                <h2 className="text-black text-3xl font-semibold">
+                  $0000,00{' '}
+                  <span className="text-yellow-500 font-semibold text-sm">
+                    21% OFF
+                  </span>
+                </h2>
+                <p className="text-yellow-500">
+                  Mismo precio en 3 cuotas de $0000,00
+                </p>
+                <h1 className="text-lg font-semibold">AutoCAD 2023</h1>
+              </div>
+            </div>
+            <div className="w-[240px] h-[85%] justify-center items-center flex flex-col hover:bg-white rounded-2xl hover:shadow-2xl cursor-pointer px-4">
+              <img src="/acad.png" alt="img-3" />
+              <div className="w-[95%]">
+                <p className="text-white bg-yellow-500 font-bold text-center w-full">
+                  PRODUCTO DESTACADO
+                </p>
+                <h2 className="text-black text-3xl font-semibold">
+                  $0000,00{' '}
+                  <span className="text-yellow-500 font-semibold text-sm">
+                    21% OFF
+                  </span>
+                </h2>
+                <p className="text-yellow-500">
+                  Mismo precio en 3 cuotas de $0000,00
+                </p>
+                <h1 className="text-lg font-semibold">AutoCAD 2023</h1>
+              </div>
+            </div>
+            <div className="w-[240px] h-[85%] justify-center items-center flex flex-col hover:bg-white rounded-2xl hover:shadow-2xl cursor-pointer px-4">
+              <img src="/acad.png" alt="img-3" />
+              <div className="w-[95%]">
+                <p className="text-white bg-yellow-500 font-bold text-center w-full">
+                  PRODUCTO DESTACADO
+                </p>
+                <h2 className="text-black text-3xl font-semibold">
+                  $0000,00{' '}
+                  <span className="text-yellow-500 font-semibold text-sm">
+                    21% OFF
+                  </span>
+                </h2>
+                <p className="text-yellow-500">
+                  Mismo precio en 3 cuotas de $0000,00
+                </p>
+                <h1 className="text-lg font-semibold">AutoCAD 2023</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className=" w-full md:w-[500px] md:h-[480px] rounded-xl shadow-2xl overflow-hidden mb-4 md:mb-0 bg-[#efefef]">
           <h1 className="text-black text-2xl font-bold mb-2 self-start pl-4">
             OFERTA DEL DIA
           </h1>
@@ -119,7 +205,7 @@ export const FeaturedProducts = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
     </>
   );

@@ -14,9 +14,6 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import slider2 from '../assets/slider2.png';
 import slider3 from '../assets/slider3.png';
 import logoSuinfi from '../assets/suinfiHero.png';
-import money from '../assets/Money Bag.png';
-import online from '../assets/Online Support.png';
-import audi from '../assets/Audit.png';
 import ofertSlider from '../assets/ofert slider.png';
 
 export const Carousel = () => {
@@ -74,6 +71,7 @@ export const Carousel = () => {
           </div>
         </SwiperSlide>
       </Swiper>
+<<<<<<< HEAD
        <div className="containerWidth w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 h-full justify-between items-center relative gap-12">
         <div className="flex gap-4 justify-start">
           <div className="flex items-center">
@@ -105,6 +103,8 @@ export const Carousel = () => {
           </div>
         </div>
       </div> 
+=======
+>>>>>>> 3e571d13ede84c76966f9a9362cb7edb648c689e
     </>
   );
 };

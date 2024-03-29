@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { FormNewProduct } from './FormNewProduct';
-//images  
-import imgCardYouproduct from '../../assets/imgCardYouproduct.png'
+//images
+import imgCardYouproduct from '../../assets/imgCardYouproduct.png';
 export const NewProduct = () => {
   const [section, setSection] = useState(true);
   const [dataProduct, setDataProduct] = useState({
@@ -26,9 +25,9 @@ export const NewProduct = () => {
       {section ? (
         <div className="lg:w-full lg:flex lg:flex-row lg:h-full min-h-screen bgnewProduct">
           <div className="lg:w-[25%] lg:h-full lg:flex lg:items-center ">
-            <aside className="text-white bg-[#37133E] lg:min-h-screen  lg:h-full lg:w-full lg:my-auto">
+            <aside className="text-white bg-sidebar lg:min-h-screen  lg:h-full lg:w-full lg:my-auto">
               <div className="lg:flex lg:justify-center lg:py-5 border-b border-white border-opacity-30">
-                <button className="border-transparent bg-[#290E2E] lg:p-5 lg:px-12  text-center text-[#D1C0D4] rounded-xl">
+                <button className="border-transparent bg-[#00000040] lg:p-5 lg:px-12  text-center text-[#D1C0D4] rounded-xl">
                   CREAR UN NUEVO PRODUCTO
                 </button>
               </div>

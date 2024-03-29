@@ -1,13 +1,7 @@
-
 import React, { useEffect, useState } from 'react';
 import { postProduct } from '../../services/Articles';
 
-
-export const FormNewProduct = ({
-  setSection,
-  dataProduct,
-  setDataProduct,
-}) => {
+export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
   const [formData, setFormData] = useState({
     nombre: '',
     descripcion: '',
@@ -16,9 +10,7 @@ export const FormNewProduct = ({
     usuarioId: 4,
   });
 
-  const handleChange = (
-    e
-  ) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -54,10 +46,10 @@ export const FormNewProduct = ({
   return (
     <div className="h-full">
       <div className="w-full flex flex-row h-full bgnewProduct ">
-        <div className="lg:w-[25%] h-full flex items-center bg-[#37133E]">
+        <div className="lg:w-[25%] h-full flex items-center bg-sidebar">
           <aside className="text-white lg:w-full lg:my-auto min-h-[150vh]">
             <div className="lg:flex lg:justify-center lg:py-5 border-b border-white border-opacity-30">
-              <button className="border-transparent bg-[#290E2E] lg:p-5 lg:px-12 text-center text-[#D1C0D4] rounded-xl">
+              <button className="border-transparent bg-[#00000040] lg:p-5 lg:px-12 text-center text-[#D1C0D4] rounded-xl">
                 <div className="hidden sm:block">
                   <p>CREAR UN NUEVO PRODUCTO</p>
                 </div>
@@ -207,7 +199,7 @@ export const FormNewProduct = ({
                     CANCELAR
                   </button>
                   <button
-                    className="border bg-[#2C0F32] lg:px-20 lg:py-3  px-7 py-3 text-white rounded-full "
+                    className="border bg-[#295F93] lg:px-20 lg:py-3  px-7 py-3 text-white rounded-full "
                     onClick={handleSubmit}
                   >
                     GUARDAR
