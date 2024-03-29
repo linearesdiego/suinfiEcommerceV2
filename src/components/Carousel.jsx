@@ -31,16 +31,8 @@ export const Carousel = () => {
           <img
             src={ofertSlider}
             alt="banner-1"
-            className="w-full h-[42 0px] lg:h-[500px] "
+            className="w-full h-[420px] object-cover lg:h-[500px]"
           />
-          {/* tenia 560px */}
-          {/* <div className="containerWidth">
-            <img
-              src={logoSuinfi}
-              alt="banner-1"
-              className="w-[100px] bottom-10 object-cover absolute lg:bottom-20 lg:w-[250px]"
-            />
-          </div> */}
         </SwiperSlide>
         <SwiperSlide className="relative">
           <img

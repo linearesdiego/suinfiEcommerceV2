@@ -202,6 +202,9 @@ export const Navbar = () => {
             <li className="p-2 border-b">
               <Link to="/newProduct">Vender</Link>
             </li>
+            <li className="p-2 border-b">
+              <Link to="/">Favoritos</Link>
+            </li>
             <li className="p-2">
               <Link
                 to={dataLogin.userLogin ? '/profile/account' : '/auth#login'}
