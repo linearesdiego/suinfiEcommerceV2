@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { postProduct } from '../../services/Articles';
+import { useAuth } from '../../context/Auth';
 
 export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
+  const { dataLogin } = useAuth();
   const [formData, setFormData] = useState({
     nombre: '',
     descripcion: '',
@@ -30,8 +32,9 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
 
   // Funcion para el boton que guarda los datos
   const handleSubmit = () => {
+    const token = dataLogin.token;
     console.log('Datos del producto:', formData);
-    postProduct(formData).then((Response) => {
+    postProduct(formData, token).then((Response) => {
       console.log(Response);
     });
     setFormData({

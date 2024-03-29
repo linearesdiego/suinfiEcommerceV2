@@ -86,9 +86,9 @@ export const SearchProduct = () => {
           {isLoading && <Loader />}
         </div>
         <div className="lg:w-full lg:flex lg:flex-row h-full ">
-          <div className="lg:hidden relative  text-white bg-[#37133E] border border-[#855E98]">
+          <div className="lg:hidden relative  text-white bg-sidebar border border-[#855E98] rounded-lg">
             <div className="flex justify-between items-center containerWidth">
-              <p>resultados</p>
+              <p>RESULTADOS</p>
               <button onClick={toggleSidebar}>
                 {isOpen ? (
                   <svg
@@ -128,13 +128,13 @@ export const SearchProduct = () => {
             <div className="flex flex-col items-end mr-7 ">
               <ul className="font-bold w-[50%] h-auto text-black top-[82px] flex-col items-center justify-center gap-10 left-0 z-[100] bg-white lg:hidden border  border-[#855E98] ">
                 <li className="border border-[#855E98]">
-                  <div className="text-white bg-[#37133E] absolute  p-5">
-                    <div className="py-10 px-7 h-full">
+                  <div className="text-white bg-sidebar absolute rounded-xl p-5  w-[50%] ">
+                    <div className="py-10  h-full flex items-start">
                       <h1 className="text-xl font-semibold">
                         BUSQUEDAS RELACIONADAS:
                       </h1>
                     </div>
-                    <div className="h-full px-7">
+                    <div className="h-full  flex flex-col items-start">
                       <div className="flex flex-row gap-3">
                         {' '}
                         <svg
@@ -172,7 +172,7 @@ export const SearchProduct = () => {
               </ul>
             </div>
           )}
-          <div className="hidden lg:w-[30%] h-full lg:flex items-center ">
+          <div className="hidden lg:w-[30%] h-full lg:flex items-center">
             {!isLoading && dataSearch.length >= 1 && (
               <div className="text-white bg-sidebar min-h-screen  h-full w-full my-auto">
                 <div className="py-10 px-7 h-full">
@@ -244,11 +244,11 @@ export const SearchProduct = () => {
                     <div className="lg:h-full lg:w-full lg:flex lg:flex-col max-w-[900px]">
                       <div className="flex flex-col gap-10 pt-10  ">
                         <div className="flex flex-row justify-between">
-                          <p className="text-2xl font-semibold uppercase">
+                          <p className="lg:text-2xl text-xl font-semibold uppercase">
                             {item.nombre}
                           </p>
 
-                          <span className="flex flex-row gap-1 items-center">
+                          <span className="flex lg:flex-row gap-1 items-center flex-col">
                             <img
                               src={estrellaCalificacion}
                               alt="calificacion"
@@ -277,7 +277,7 @@ export const SearchProduct = () => {
                             <p>5.0</p>
                           </span>
                         </div>
-                        <div className="flex flex-col lg:mt-[-30px] text-xl text-[#F4D240]">
+                        <div className="flex flex-col lg:mt-[-30px] mt-[-100px] pb-5  text-xl text-[#F4D240]">
                           <p>Mismo precio en 3 cuotas</p>
                           <p>500000</p>
                           <div className="flex flex-row gap-10">
