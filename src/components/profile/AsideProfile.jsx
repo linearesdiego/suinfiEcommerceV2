@@ -21,8 +21,8 @@ export const AsideProfile = () => {
   const buttonClasses = (path) => `
   flex items-center mx-0 my-0 rounded-md p-4 transition duration-300
   ${
-    isActive(path) ? 'bg-[#7637839C] ' : 'bg-[#37133E]'
-  } hover:bg-[#7637839C] cursor-pointer gap-2
+    isActive(path) ? 'bg-[#2D5682]' : ''
+  } hover:bg-[#2D5682] cursor-pointer gap-2
 `;
 
   const handleLogout = () => {
@@ -44,8 +44,8 @@ export const AsideProfile = () => {
 
   return (
     <>
-      <div className="container-profile overflow-auto flex justify-between bg-gradient-to-b from-[#EFD0EC] to-[#F8F8F8] min-h-screen">
-        <aside className="bg-[#37133E] lg:text-base md:text-sm sm:text-xs  lg:w-1/4 my-0 text-[#D1C0D4] lg:flex lg:flex-col gap-1 text-center">
+      <div className="container-profile overflow-hidden flex justify-start bg-[#E1E1E1] min-h-screen">
+        <aside className="bg-gradient-to-r from-[#38516F] to-[#3583CC] lg:text-base md:text-sm sm:text-xs  lg:w-1/4 my-0 text-[#ffffff] lg:flex lg:flex-col gap-1 text-center ">
           <button
             type="button"
             onClick={() => navigate('/profile/account')}
@@ -54,51 +54,53 @@ export const AsideProfile = () => {
             <img
               src={customerPic}
               alt="Info de la cuenta"
-              className="w-4 h-4 mr-4 ml-2"
+              className="w-4 h-4 mr-4 ml-3"
             />
-            INFORMACION DE TU CUENTA
+            <p className="hidden md:block text-start">
+              INFORMACION DE TU CUENTA
+            </p>
           </button>
 
           <button
             type="button"
             onClick={() => navigate('/profile/security')}
-            className={buttonClasses('/profile/security')}
+            className={buttonClasses('/profile/security') + 'w-full'}
           >
             <img
               src={securityPic}
               alt="Seguridad"
-              className="w-4 h-4 mr-4 ml-2"
+              className="w-4 h-4 mr-2 ml-3"
             />
-            SEGURIDAD
+            <p className="hidden md:block">SEGURIDAD</p>
           </button>
           {/* routerLink="/ecommerce/profile/cards" routerLinkActive="bg-[#7637839C]" */}
           <button
             type="button"
             onClick={() => navigate('/profile/cards')}
-            className={buttonClasses('/profile/cards')}
+            className={buttonClasses('/profile/cards') + 'w-full'}
           >
             <img
               src={magneticCardPic}
               alt="Seguridad"
-              className="w-4 h-4 mr-4 ml-2"
+              className="w-4 h-4 mr-2 ml-3"
             />
-            TARJETAS
+            <p className="hidden md:block">TARJETAS</p>
           </button>
           <button
             type="button"
             onClick={handleLogout}
-            className="flex items-center mx-0 my-0 rounded-md p-4 transition duration-300 hover:bg-[#7637839C]"
+            className="flex items-center mx-0 my-0 w-full rounded-md p-4 transition duration-300 hover:bg-[#2D5682]"
           >
             <img
               src={logoutPic}
               alt="cerrar-sesion"
               className="w-7 h-7 mr-2 ml-2 invert"
             />
-            CERRAR SESIÓN
+            <p className="hidden md:block">CERRRAR SESION</p>
           </button>
         </aside>
 
-        <div className="w-9/12 m-4 ">{renderProfileContent()}</div>
+        <div className="w-9/12 m-4">{renderProfileContent()}</div>
       </div>
     </>
   );

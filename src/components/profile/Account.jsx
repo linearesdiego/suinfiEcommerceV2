@@ -3,7 +3,8 @@ import { useAuth } from '../../context/Auth';
 import { fetchOneProfile } from '../../services/Perfil';
 
 //images
-import group from '../../assets/Group 225.png'
+//import group from '../../assets/Group 225.png';
+import imgProfile from '../../assets/imgProfile.png';
 export const Account = () => {
   const [profile, setProfile] = useState();
   const { dataLogin } = useAuth();
@@ -23,25 +24,22 @@ export const Account = () => {
 
   return (
     <>
-      <div className="pl-4 w-11/12 ml-10 mr-4">
-        <div className="bg-white border shadow-lg p-4 rounded-xl flex items-center mt-8 mr-4 h-2/6">
-          <div className="w-[220px] h-[220px] rounded-full bg-[#DDB1DC] flex justify-center items-end">
-            <img
-              width={180}
-              height={180}
-              src={group}
-              alt="Superpuesta"
-            />
+      <div className=" ml-2 mr-2 pl-2 md:pl-4 w-11/12 md:ml-10 md:mr-4">
+        <div className="bg-white border border-stone-400 shadow-lg p-4 rounded-xl block md:flex items-center md:mt-8 mr-4 ml-2 mb-2 h-2/6 gap-6">
+          <div className="w-auto h- m-1 rounded-full flex justify-center items-center">
+            <img width={180} height={180} src={imgProfile} alt="Superpuesta" />
           </div>
 
           <div className="p-0">
-            <div className="mb-6 ml-6">
-              <h2 className="text-4xl font-bold mb-2">
+            <div className="mb-6 md:ml-6">
+              <h2 className="text-2xl md:text-4xl text-center md:text-start font-bold mb-2">
                 {profile?.nombre} {profile?.apellido}
               </h2>
             </div>
-            <div className="mt-0 ml-6">
-              <p className="p-2 text-[#5D5D5D]">{profile?.email}</p>
+            <div className="mt-0 md:ml-6">
+              <p className="p-2 text-[#5D5D5D] text-center md:text-start">
+                {profile?.email}
+              </p>
             </div>
             {/* <div className="mt-0 ml-6">
               <p className="p-2 text-[#5D5D5D]">Córdoba Argentina</p>
@@ -49,8 +47,8 @@ export const Account = () => {
           </div>
         </div>
 
-        <div className="ml-8">
-          <div className="p-4 mt-2 font-bold text-3xl">
+        <div className="md:ml-8">
+          <div className="p-4 mt-2 font-bold text-2xl md:text-3xl">
             <h4>Información de la cuenta</h4>
           </div>
           <div className=" py-0 px-4 ">
