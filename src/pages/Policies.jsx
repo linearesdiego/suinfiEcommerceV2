@@ -6,7 +6,7 @@ import PoliciesComp from '../components/Policies/PoliciesComp';
 
 const Policies = () => {
   return (
-    <div>
+    <div className='bg-[#E1E1E1] min-h-screen'>
         <Navbar/>
         <PoliciesSearch/>
         <PoliciesComp/>

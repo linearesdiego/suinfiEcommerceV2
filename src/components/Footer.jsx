@@ -77,7 +77,7 @@ export const Footer = () => {
             <h2 className="font-semibold lg:m-2 lg:mx-2 my-0">
               Redes Sociales */}
           <div className="flex flex-col gap-2 md:gap-8 lg:gap-8 m-2 w-full">
-            <h2 className="font-semibold m-2">Ayuda</h2>
+            <a href='/policies' className="font-semibold m-2">Ayuda</a>
             <div className="flex flex-col gap-1 mx-2 my-0">
               <a href="#" className="hover:underline">
                 Comprar
