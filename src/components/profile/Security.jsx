@@ -23,7 +23,7 @@ export const Security = () => {
       <div className="md:p-4 mt-2 font-bold text-2xl md:text-3xl">
         <h4 className="p-2 md:p-0">Seguridad de tu cuenta</h4>
       </div>
-      <div className="bg-white border  border-stone-400 shadow-lg  p-4 rounded-xl md:mt-4 ml-2 mr-4 h-full">
+      <div className="bg-white border  border-stone-400 shadow-lg  p-4 rounded-xl md:mt-4 ml-2 mr-4 md:h-full">
         <div className="m-auto md:ml-4">
           <div className=" py-0 md:px-4 ">
             <h2 className="font-bold py-2 px-0 ">Mail</h2>
