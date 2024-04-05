@@ -13,6 +13,7 @@ import { Security } from './pages/Profile/Security';
 import { Card } from './pages/Profile/Card';
 import { YourProductsPage } from './pages/YourProductsPage';
 import Policies from './pages/Policies';
+import { CreatedPublic } from './pages/CreatedPublic';
 function App() {
   return (
     <Router>
@@ -27,6 +28,7 @@ function App() {
         <Route path="/profile/cards" element={<Card />} />
         <Route path="/yourProducts" element={<YourProductsPage />} />
         <Route path="/policies" element={<Policies />} />
+        <Route path="/createdPublic" element={<CreatedPublic />} />
         {/*  <Route path='/newProduct' element={<Proveedores />} />
         
         
