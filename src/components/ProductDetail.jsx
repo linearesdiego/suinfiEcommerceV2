@@ -5,6 +5,8 @@ import { useAuth } from '../context/Auth';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { addProductToCart } from '../services/Carrito';
 import { fetchProductById } from '../services/Articles';
+import { ProductsFeatures } from './ProductsFeatures';
+import { RelatedProducts } from './RelatedProducts';
 
 const ProductDetail = () => {
   const { dataLogin, setCartResponse, setShowModal } = useAuth();
@@ -13,6 +15,8 @@ const ProductDetail = () => {
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [cantidad, setCantidad] = useState(1);
+  const [categoria, setCategoria] = useState();
+  const [descripcion, setDescripcion] = useState();
 
   const navigate = useNavigate();
   const handleIncrement = () => {
@@ -67,6 +71,8 @@ const ProductDetail = () => {
 
           const data = { ...productData, imagenNew: dataUrl };
           setProduct(data);
+          setCategoria(productData.categoriaId);
+          setDescripcion(productData.descripcion);
         }
       } catch (error) {
         console.error('Error fetching product:', error);
@@ -123,6 +129,8 @@ const ProductDetail = () => {
           )}
         </div>
       </div>
+      <RelatedProducts categoria={categoria} />
+      <ProductsFeatures descripcion={descripcion} />
     </>
   );
 };
