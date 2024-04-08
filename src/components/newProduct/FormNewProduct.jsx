@@ -10,6 +10,7 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
     precio: '',
     categoriaId: 1,
     usuarioId: 4,
+    imagen: null, // Nuevo campo para la imagen
   });
 
   const handleChange = (e) => {
@@ -20,21 +21,27 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
     }));
   };
 
-  // useEffect(() => {
-  //   const postData = async () => {
-  //     try {
-  //       const data = await uploadProduct();
-  //       setFormData(data);
-  //     } catch (error) {}
-  //   };
-  //   postData();
-  // }, []);
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    console.log(e.target.files);
+    setFormData((prevState) => ({
+      ...prevState,
+      imagen: file,
+    }));
+    console.log(file);
+  };
 
-  // Funcion para el boton que guarda los datos
   const handleSubmit = () => {
     const token = dataLogin.token;
+    const formDataWithImage = new FormData();
+    formDataWithImage.append('nombre', formData.nombre);
+    formDataWithImage.append('descripcion', formData.descripcion);
+    formDataWithImage.append('precio', formData.precio);
+    formDataWithImage.append('categoriaId', formData.categoriaId);
+    formDataWithImage.append('usuarioId', formData.usuarioId);
+    formDataWithImage.append('imagen', formData.imagen); // Agregar la imagen al FormData
     console.log('Datos del producto:', formData);
-    postProduct(formData, token).then((Response) => {
+    postProduct(formDataWithImage, token).then((Response) => {
       console.log(Response);
     });
     setFormData({
@@ -43,6 +50,7 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
       precio: '',
       categoriaId: 1,
       usuarioId: 4,
+      imagen: null, // Limpiar el campo de la imagen después de enviar el formulario
     });
   };
 
@@ -136,49 +144,24 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
                     <p className="lg:text-xl font-bold">Fotos</p>
                   </div>
                   <div className="py-10 lg:py-0">
-                    <div className="lg:flex lg:flex-row lg:justify-between flex gap-5 flex-col">
-                      <div className="lg:flex lg:flex-col border border-dashed border-black lg:w-[250px] lg:h-[250px] lg:justify-center lg:items-center gap-3 rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
-                        <p className="text-center lg:px-2 border border-black rounded-full text-3xl items-center">
-                          +
-                        </p>
-                        <div>
-                          <img
-                            src="../../../../assets/images/ImagenesEcommerce/imgCargaProducto.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-
-                      <div className="lg:flex lg:flex-col border border-dashed border-black lg:w-[250px] lg:h-[250px] lg:justify-center lg:items-center gap-3 rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
-                        <p className="text-center lg:px-2 border border-black rounded-full text-3xl items-center">
-                          +
-                        </p>
-                        <div>
-                          <img
-                            src="../../../../assets/images/ImagenesEcommerce/imgCargaProducto.png"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-
-                      <div className="lg:flex lg:flex-col border border-dashed border-black lg:w-[250px] lg:h-[250px] lg:justify-center lg:items-center gap-3 rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
-                        <p className="text-center lg:px-2 border border-black rounded-full text-3xl">
-                          +
-                        </p>
-
-                        <div>
-                          <img
-                            src="../../../../assets/images/ImagenesEcommerce/imgCargaProducto.png"
-                            alt=""
-                          />
-                        </div>
+                    <div className="lg:flex lg:flex-col border border-dashed border-black lg:w-[250px] lg:h-[250px] lg:justify-center lg:items-center gap-3 rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
+                      <label className="text-center lg:px-2 border border-black rounded-full text-3xl items-center">
+                        +
+                      </label>
+                      <div>
+                        <input
+                          className="w-full h-full"
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageChange}
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="lg:w-full h-[170px] bg-white text-black rounded-lg shadow-[0px_4px_4px_0px_#00000040]  mb-5 lg:mb-0">
+              <div className="bg-white text-black w-full lg:h-[170px] rounded-lg shadow-[0px_4px_4px_0px_#00000040]  mb-5 lg:mb-0">
                 <div className="w-[95%] mx-auto">
                   <div className="py-3">
                     <p className="lg:text-xl font-bold">Precio</p>
@@ -196,7 +179,7 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
                   </div>
                 </div>
               </div>
-              <div className="lg:w-full lg:h-[50px] ">
+              <div className="lg:w-full h-[50px] ">
                 <div className="w-full lg:flex lg:flex-row lg:justify-end gap-3 flex flex-col">
                   <button className="border bg-white lg:px-16 lg:py-3 px-7 py-3 rounded-full">
                     CANCELAR

@@ -44,7 +44,7 @@ export const postProduct = async (data, token) => {
   try {
     const response = await axios.post(`${baseUrl}${urlCreate}`, data, {
       headers: {
-        Authorization: `Bearer ${token}`, // Include token with Bearer prefix
+        Authorization: `${token}`, // Include token with Bearer prefix
         'Content-Type': 'application/json', // Ensure data is sent as JSON
       },
     });
