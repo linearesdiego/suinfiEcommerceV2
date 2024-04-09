@@ -1,20 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ModalCarrito } from './ModalCarrito';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/Auth';
+import fetchCategories from '../services/Categories';
 
 //images
 import logoSuinfi from '../assets/suinfiIconNavbar.png';
 import searchLogin from '../assets/searchIcon.png';
 import shopping from '../assets/ShoppingCart.png';
 import userLogin from '../assets/userIconNavBar.png';
+//icons
+import { FiChevronDown } from 'react-icons/fi';
+import { FiChevronRight } from 'react-icons/fi';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { dataLogin, showModal, setShowModal } = useAuth();
   const [search, setSearch] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
+  const [showCategories, setShowCategories] = useState(false);
+  const [categories, setCategories] = useState([]);
+  // Obtener categorias
+  useEffect(() => {
+    const fetchCategoriesData = async () => {
+      try {
+        const categoriesData = await fetchCategories();
+        setCategories(categoriesData);
+      } catch (error) {
+        // Manejo de errores
+        console.error('Error al obtener las categorías:', error);
+      }
+    };
 
+    fetchCategoriesData();
+  }, []);
+  const handleShowCategories = () => {
+    setShowCategories(!showCategories);
+  };
   const navigate = useNavigate();
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -47,8 +69,17 @@ export const Navbar = () => {
           </Link>
         </div>
         <div className="hidden md:flex items-center text-white">
-          <Link to="/" className="hover:cursor-pointer text-lg">
+          <Link
+            onClick={handleShowCategories}
+            to="/"
+            className="hover:cursor-pointer text-lg flex"
+          >
             Categorias
+            {showCategories ? (
+              <FiChevronRight className="ml-2 mt-2 w-4 h-4" />
+            ) : (
+              <FiChevronDown className="ml-2 mt-2 w-4 h-4" />
+            )}
           </Link>
         </div>
         <div className="hidden md:flex items-center text-white">
@@ -197,7 +228,27 @@ export const Navbar = () => {
         <div className="absolute bg-white w-full md:hidden">
           <ul>
             <li className="p-2 border-b">
-              <Link to="/">Categorias</Link>
+              <Link className="flex" onClick={handleShowCategories} to="/">
+                Categorias
+                {showCategories ? (
+                  <FiChevronRight className="ml-1 md:ml-2 mt-1.5 w-4 h-4 " />
+                ) : (
+                  <FiChevronDown className=" ml-1 md:ml-2 mt-1.5 w-4 h-4" />
+                )}
+              </Link>
+
+              {showCategories && (
+                <div className="overflow-y-auto h-32">
+                  <ul className="bg-gray-200">
+                    {categories.map((category, index) => (
+                      <li key={index} className="py-2">
+                        {' '}
+                        - {category.nombre}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </li>
             <li className="p-2 border-b">
               <Link to="/newProduct">Vender</Link>
@@ -214,6 +265,19 @@ export const Navbar = () => {
             </li>
             <li></li>
           </ul>
+        </div>
+      )}
+      {showCategories && (
+        <div className="absolute hidden md:block md:left-12  xl:left-18 2xl:left-24 z-10 mt-0 w-48 h-64 origin-top-right rounded-xl bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-y-auto">
+          {categories.map((category, index) => (
+            <a
+              key={index}
+              href="#"
+              className="block px-4 py-2 text-sm text-gray-700"
+            >
+              {category.nombre}
+            </a>
+          ))}
         </div>
       )}
     </header>
