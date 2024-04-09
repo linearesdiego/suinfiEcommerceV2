@@ -13,6 +13,9 @@
   background: linear-gradient(rgba(0,0,0,1) 14%, rgba(244,244,244,1) 30%);
 }
 
+.custom-shadow {
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.5); /* Propiedades de la sombra */
+}
 
 .bg-sidebar {
   background: linear-gradient(
