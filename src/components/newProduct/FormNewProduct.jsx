@@ -9,9 +9,16 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
     descripcion: '',
     precio: '',
     categoriaId: 1,
-    usuarioId: 4,
+    usuarioId: 1,
     imagen: null, // Nuevo campo para la imagen
   });
+
+  const handleAddImageClick = () => {
+    const inputElement = document.getElementById('productPictureInput');
+    if (inputElement) {
+      inputElement.click();
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,37 +30,57 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    console.log(e.target.files);
     setFormData((prevState) => ({
       ...prevState,
       imagen: file,
     }));
-    console.log(file);
   };
 
-  const handleSubmit = () => {
-    const token = dataLogin.token;
+  const handleSubmit = async () => {
     const formDataWithImage = new FormData();
     formDataWithImage.append('nombre', formData.nombre);
     formDataWithImage.append('descripcion', formData.descripcion);
     formDataWithImage.append('precio', formData.precio);
     formDataWithImage.append('categoriaId', formData.categoriaId);
     formDataWithImage.append('usuarioId', formData.usuarioId);
-    formDataWithImage.append('imagen', formData.imagen); // Agregar la imagen al FormData
-    console.log('Datos del producto:', formData);
-    postProduct(formDataWithImage, token).then((Response) => {
-      console.log(Response);
-    });
+
+    if (formData.imagen) {
+      const reader = new FileReader();
+      reader.onload = async function (e) {
+        const base64 = e.target.result.split(',')[1];
+        formDataWithImage.append('imagen1', base64); // Cambiado a "imagen1"
+
+        // Enviar la imagen al servidor
+        try {
+          const token = dataLogin.token;
+          const response = await postProduct(formDataWithImage, token);
+          console.log(response);
+          if (response.status === 'success') {
+            // Verifica si la respuesta es exitosa
+            alert('Publicación creada con éxito!'); // Mensaje personalizado
+          } else {
+            alert(response.message); // Muestra el mensaje de respuesta del servidor si no es exitosa
+          }
+        } catch (error) {
+          console.error('Error al enviar la imagen al servidor:', error);
+          alert('Error al enviar la imagen al servidor:', error.message);
+        }
+      };
+      reader.readAsDataURL(formData.imagen);
+    } else {
+      alert('Por favor, seleccione una imagen.');
+    }
+
+    // Limpiar el formulario después de enviar la imagen
     setFormData({
       nombre: '',
       descripcion: '',
       precio: '',
       categoriaId: 1,
       usuarioId: 4,
-      imagen: null, // Limpiar el campo de la imagen después de enviar el formulario
+      imagen: null,
     });
   };
-
   return (
     <div className="h-full">
       <div className="w-full flex flex-row h-full bgnewProduct ">
@@ -145,15 +172,19 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
                   </div>
                   <div className="py-10 lg:py-0">
                     <div className="lg:flex lg:flex-col border border-dashed border-black lg:w-[250px] lg:h-[250px] lg:justify-center lg:items-center gap-3 rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
-                      <label className="text-center lg:px-2 border border-black rounded-full text-3xl items-center">
-                        +
-                      </label>
                       <div>
+                        <label
+                          onClick={handleAddImageClick}
+                          className="cursor-pointer text-center lg:px-2 border border-black rounded-full text-3xl items-center"
+                        >
+                          +
+                        </label>
                         <input
-                          className="w-full h-full"
+                          id="productPictureInput"
                           type="file"
                           accept="image/*"
                           onChange={handleImageChange}
+                          style={{ display: 'none' }}
                         />
                       </div>
                     </div>
