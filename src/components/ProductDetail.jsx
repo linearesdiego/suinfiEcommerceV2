@@ -7,6 +7,8 @@ import { addProductToCart } from '../services/Carrito';
 import { fetchProductById } from '../services/Articles';
 import { ProductsFeatures } from './ProductsFeatures';
 import { RelatedProducts } from './RelatedProducts';
+import { ReviewProducts } from './ReviewProducts';
+import { Payments } from './Payments';
 
 const ProductDetail = () => {
   const { dataLogin, setCartResponse, setShowModal } = useAuth();
@@ -86,51 +88,66 @@ const ProductDetail = () => {
   return (
     <>
       <Navbar></Navbar>
-      <div className="bg-gradient-to-tr from-[#9378a5] to-[#f6eef9] w-full h-full lg:h-[100vh] flex items-center justify-center">
-        <div className="container-width-ecommerce lg:flex lg:flex-row justify-between items-center mt-20 lg:mt-0">
+      <div className="w-full h-full lg:h-[100vh] flex items-center justify-center lg:mt-[95rem]">
+        <div className="containerWidth lg:flex lg:flex-row justify-center items-center mt-16 lg:mt-0">
           {isLoading && <Loader />}
           {!isLoading && (
-            <div className="flex flex-col lg:flex-row justify-center items-center gap-5 mt-10">
-              <div className="">
-                <div className="lg:w-[500px] lg:h-[500px] w-[250px] h-[250px]">
-                  <img
-                    src={product?.imagenNew}
-                    alt="article img"
-                    className="rounded-lg "
-                  />
-                </div>
-              </div>
-              <div className="w-[50%] flex flex-col gap-9">
-                <h2 className="text-2xl lg:text-4xl font-bold">
-                  {product?.nombre}
-                </h2>
-                <p className="-mt-8">
-                  {product?.descripcion}Lorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Vestibulum dictum laoreet ipsum, ac efficitur
-                  erat tempus ut. Nam ut aliquet metus, sit amet.
-                </p>
-                <h2 className="text-4xl font-bold">${product?.precio}</h2>
-                <div className="flex flex-col gap-5 pb-10 lg:flex-row ">
-                  <div className="flex w-full lg:w-[25%] flex-row mr-7 justify-center bg-[#f6eef9] gap-3 items-center px-0  rounded-xl font-semibold text-center">
-                    <button onClick={handleDecrement}>-</button>
-
-                    <p className="w-4">{cantidad}</p>
-                    <button onClick={handleIncrement}>+</button>
+            <div className="flex flex-col justify-center items-center ">
+              <div className="flex flex-col lg:flex-row justify-center gap-5 mt-10 mb-20">
+                <div className=" flex justify-center">
+                  <div className="lg:w-[350px] lg:h-[350px] w-[250px] h-[250px] lg:pr-20 flex justify-center">
+                    <img
+                      src={product?.imagenNew}
+                      alt="article img"
+                      className="rounded-lg"
+                    />
                   </div>
-                  <button
-                    onClick={handleAddToCart}
-                    className="bg-black text-white px-10 py-2 rounded-full focus:shadow-2xl"
-                  >
-                    AGREGAR AL CARRITO
-                  </button>
+                </div>
+                <div className="lg:w-[50%] w-[22rem] flex flex-col gap-9 mx-auto lg:mx-0">
+                  <h2 className="text-2xl lg:text-4xl font-bold">
+                    {product?.nombre}
+                  </h2>
+                  <p className="-mt-6">
+                    {product?.descripcion}Lorem ipsum dolor sit amet,
+                    consectetur adipiscing elit. Vestibulum dictum laoreet
+                    ipsum, ac efficitur erat tempus ut. Nam ut aliquet metus,
+                    sit amet.
+                  </p>
+                  <h2 className="text-4xl font-bold">${product?.precio}</h2>
+                  <div className="flex flex-col gap-5 pb-10 lg:flex-row">
+                    <div className="flex lg:w-[7em] w-full flex-row mr-7 justify-center gap-3 items-center px-0 rounded-xl font-semibold text-center border-[1px] border-neutral-900 ">
+                      <button
+                        onClick={handleDecrement}
+                        className="text-xl flex"
+                      >
+                        -
+                      </button>
+
+                      <p className="w-4">{cantidad}</p>
+                      <button onClick={handleIncrement} className="text-xl">
+                        +
+                      </button>
+                    </div>
+                    <button
+                      onClick={handleAddToCart}
+                      className="bg-black text-white px-10 py-2 rounded-full focus:shadow-2xl"
+                    >
+                      AGREGAR AL CARRITO
+                    </button>
+                  </div>
                 </div>
               </div>
+              <Payments />
+              <div className="h-[1px] w-full bg-[#807f7f] my-32"></div>
+              <RelatedProducts categoria={categoria} />
+              <div className="h-[1px] w-full bg-[#807f7f] my-32"></div>
+              <ProductsFeatures descripcion={descripcion} />
+              <div className="h-[1px] w-full bg-[#807f7f] my-32"></div>
+              <ReviewProducts />
             </div>
           )}
         </div>
       </div>
-      <RelatedProducts categoria={categoria} />
-      <ProductsFeatures descripcion={descripcion} />
     </>
   );
 };
