@@ -9,10 +9,10 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
     descripcion: '',
     precio: '',
     categoriaId: 1,
-    usuarioId: 1,
+    usuarioId: dataLogin.payload.userId,
     imagen: null, // Nuevo campo para la imagen
   });
-
+  console.log(dataLogin);
   const handleAddImageClick = () => {
     const inputElement = document.getElementById('productPictureInput');
     if (inputElement) {
