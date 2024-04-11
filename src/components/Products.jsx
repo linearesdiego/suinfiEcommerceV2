@@ -79,7 +79,7 @@ export const Products = () => {
         </div>
         <Swiper
           slidesPerView={3}
-          spaceBetween={320}
+          spaceBetween={280}
           navigation={true}
           modules={[Navigation]}
           className="w-full mr-0 ml-0"
@@ -162,7 +162,7 @@ export const Products = () => {
         </Swiper>
         <Swiper
           slidesPerView={3}
-          spaceBetween={320}
+          spaceBetween={280}
           navigation={true}
           modules={[Navigation]}
           className="w-full mr-0 ml-0"
@@ -244,7 +244,7 @@ export const Products = () => {
         </Swiper>
         <Swiper
           slidesPerView={3}
-          spaceBetween={320}
+          spaceBetween={280}
           navigation={true}
           modules={[Navigation]}
           className="w-full mr-0 ml-0"
