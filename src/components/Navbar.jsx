@@ -64,7 +64,7 @@ export const Navbar = () => {
             <img
               src={logoSuinfi}
               alt="suinfi-logo"
-              className="h-[24px] w-[19px]"
+              className="h-[24px] min-w-[19px]"
             />
           </Link>
         </div>
@@ -72,7 +72,7 @@ export const Navbar = () => {
           <Link
             onClick={handleShowCategories}
             to="/"
-            className="hover:cursor-pointer text-lg flex"
+            className="hover:cursor-pointer text-lg flex px-1 text-nowrap"
           >
             Categorias
             {showCategories ? (
@@ -82,21 +82,42 @@ export const Navbar = () => {
             )}
           </Link>
         </div>
-        <div className="hidden md:flex items-center text-white">
+        <div className="hidden md:flex items-center text-white px-1 text-nowrap">
           {dataLogin.userLogin && (
             <Link to="/newProduct" className="hover:cursor-pointer text-lg">
               Vender
             </Link>
           )}
         </div>
-        <div className="hidden md:flex items-center text-white">
+        <div className="hidden md:flex items-center text-white px-1 text-nowrap">
           {dataLogin.userLogin && (
             <Link to="/newProduct" className="hover:cursor-pointer text-lg">
               Favoritos
             </Link>
           )}
         </div>
-        <div className="flex items-center w-[60%] min-w-[155px] max-w-[800px]">
+        <div className="hidden md:flex items-center text-white px-1 text-nowrap">
+          {dataLogin.userLogin && (
+            <Link to="/newProduct" className="hover:cursor-pointer text-lg">
+              Mis compras
+            </Link>
+          )}
+        </div>
+        <div className="hidden md:flex items-center text-white px-1 text-nowrap">
+          {dataLogin.userLogin && (
+            <Link to="/newProduct" className="hover:cursor-pointer text-lg">
+              Mis ventas
+            </Link>
+          )}
+        </div>
+        <div className="hidden md:flex items-center text-white px-1 text-nowrap">
+          {dataLogin.userLogin && (
+            <Link to="/newProduct" className="hover:cursor-pointer text-lg">
+              Tus publicaciones
+            </Link>
+          )}
+        </div>
+        <div className="flex items-center w-[60%] min-w-[160px] max-w-[500px]">
           <form
             className="relative items-center w-full flex gap-3 md:flex md:justify-end"
             onSubmit={handleSubmit}
@@ -255,6 +276,15 @@ export const Navbar = () => {
             </li>
             <li className="p-2 border-b">
               <Link to="/">Favoritos</Link>
+            </li>
+            <li className="p-2 border-b">
+              <Link to="/newProduct">Mis compras</Link>
+            </li>
+            <li className="p-2 border-b">
+              <Link to="/newProduct">Mis ventas</Link>
+            </li>
+            <li className="p-2 border-b">
+              <Link to="/newProduct">Mis publicaciones</Link>
             </li>
             <li className="p-2">
               <Link
