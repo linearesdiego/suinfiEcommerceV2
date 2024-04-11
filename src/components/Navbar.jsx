@@ -262,7 +262,7 @@ export const Navbar = () => {
         <div className="absolute bg-white w-full md:hidden">
           <ul>
             <li className="p-2 border-b">
-              <Link className="flex" onClick={handleShowCategories} to="/">
+              <Link className="flex" onClick={handleShowCategories}>
                 Categorias
                 {showCategories ? (
                   <FiChevronRight className="ml-1 md:ml-2 mt-1.5 w-4 h-4 " />
