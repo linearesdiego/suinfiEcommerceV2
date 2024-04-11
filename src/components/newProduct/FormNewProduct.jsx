@@ -81,6 +81,7 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
       imagen: null,
     });
   };
+
   return (
     <div className="h-full">
       <div className="w-full flex flex-row h-full bgnewProduct ">
@@ -171,23 +172,31 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
                     <p className="lg:text-xl font-bold">Fotos</p>
                   </div>
                   <div className="py-10 lg:py-0">
-                    <div className="lg:flex lg:flex-col border border-dashed border-black lg:w-[250px] lg:h-[250px] lg:justify-center lg:items-center gap-3 rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
-                      <div>
-                        <label
-                          onClick={handleAddImageClick}
-                          className="cursor-pointer text-center lg:px-2 border border-black rounded-full text-3xl items-center"
-                        >
-                          +
-                        </label>
-                        <input
-                          id="productPictureInput"
-                          type="file"
-                          accept="image/*"
-                          onChange={handleImageChange}
-                          style={{ display: 'none' }}
-                        />
+                    {formData.imagen ? (
+                      <img
+                        src={URL.createObjectURL(formData.imagen)}
+                        alt="Preview"
+                        className="lg:w-[250px] lg:h-[250px] rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
+                      />
+                    ) : (
+                      <div className="lg:flex lg:flex-col border border-dashed border-black lg:w-[250px] lg:h-[250px] lg:justify-center lg:items-center gap-3 rounded-lg shadow-[0px_4px_4px_0px_#00000040]">
+                        <div>
+                          <label
+                            onClick={handleAddImageClick}
+                            className="cursor-pointer text-center lg:px-2 border border-black rounded-full text-3xl items-center"
+                          >
+                            +
+                          </label>
+                          <input
+                            id="productPictureInput"
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                            style={{ display: 'none' }}
+                          />
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -230,3 +239,5 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
     </div>
   );
 };
+
+export default FormNewProduct;

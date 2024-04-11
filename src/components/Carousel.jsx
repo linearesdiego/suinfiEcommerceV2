@@ -31,7 +31,7 @@ export const Carousel = () => {
           <img
             src={ofertSlider}
             alt="banner-1"
-            className="w-full h-[420px]  lg:h-[500px]"
+            className="w-full h-[420px]  lg:h-[500px] "
           />
         </SwiperSlide>
         <SwiperSlide className="relative">

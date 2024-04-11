@@ -9,6 +9,7 @@ import { Loader } from './Loader';
 //img imports
 import imgInstalacion from '../assets/etiquetaInstalacion.png';
 import estrellaCalificacion from '../assets/estrellaCalificacion.png';
+import noResults from '../assets/noResultsEcommerce.jpg';
 
 export const SearchProduct = () => {
   //Url with the searched query
@@ -311,7 +312,7 @@ export const SearchProduct = () => {
             <div className="lg:w-[100%] flex flex-row py-10 px-5">
               <div className="w-[30%]">
                 <img
-                  src="/noResultsEcommerce.jpg"
+                  src={noResults}
                   alt="No Results img"
                   className="w-[300px] h-[300px]"
                 />
