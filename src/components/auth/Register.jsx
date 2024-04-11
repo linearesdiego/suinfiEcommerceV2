@@ -222,7 +222,7 @@ export const Register = () => {
                         required: true,
                         pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                         minLength: 3,
-                        maxLength: 15,
+                        maxLength: 25,
                       })}
                       type="email"
                       placeholder="Email"
