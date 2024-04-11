@@ -14,6 +14,7 @@ import { Card } from './pages/Profile/Card';
 import { YourProductsPage } from './pages/YourProductsPage';
 import Policies from './pages/Policies';
 import { CreatedPublic } from './pages/CreatedPublic';
+import { ProductsForCategory } from './pages/ProductsForCategory';
 function App() {
   return (
     <Router>
@@ -29,6 +30,10 @@ function App() {
         <Route path="/yourProducts" element={<YourProductsPage />} />
         <Route path="/policies" element={<Policies />} />
         <Route path="/createdPublic" element={<CreatedPublic />} />
+        <Route
+          path="/productsForCategory/:id"
+          element={<ProductsForCategory />}
+        />
         {/*  <Route path='/newProduct' element={<Proveedores />} />
         
         

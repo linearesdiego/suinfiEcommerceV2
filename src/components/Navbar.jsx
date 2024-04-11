@@ -20,6 +20,20 @@ export const Navbar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showCategories, setShowCategories] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [showModalCategories, setShowModalCategories] = useState(false);
+
+  const goToProductsForCategory = (categoryId) => {
+    navigate(`/productsForCategory/${categoryId}`);
+  };
+
+  const categoriasFiltradas = categories.filter(
+    (category) => !category.codigo.includes('.')
+  );
+
+  const handleShowModalCategories = () => {
+    setShowModalCategories(!showModalCategories);
+  };
+  // *************************************************
   // Obtener categorias
   useEffect(() => {
     const fetchCategoriesData = async () => {
@@ -71,7 +85,6 @@ export const Navbar = () => {
         <div className="hidden md:flex items-center text-white">
           <Link
             onClick={handleShowCategories}
-            to="/"
             className="hover:cursor-pointer text-lg flex px-1 text-nowrap"
           >
             Categorias
@@ -259,12 +272,40 @@ export const Navbar = () => {
               </Link>
 
               {showCategories && (
-                <div className="overflow-y-auto h-32">
-                  <ul className="bg-gray-200">
-                    {categories.map((category, index) => (
-                      <li key={index} className="py-2">
-                        {' '}
+                <div className="overflow-y-auto max-h-32">
+                  <ul className="bg-gray-200 block">
+                    {categoriasFiltradas.map((category, index) => (
+                      <li
+                        onClick={handleShowModalCategories}
+                        key={index}
+                        className="py-2 "
+                      >
                         - {category.nombre}
+                        {showModalCategories ? (
+                          <FiChevronRight className="ml-2 mt-1 w-4 h-4" />
+                        ) : (
+                          <FiChevronDown className="ml-2 mt-1 w-4 h-4" />
+                        )}
+                        {showModalCategories && (
+                          <li>
+                            {categories.map((category, index) => {
+                              if (category.codigo.includes('.')) {
+                                return (
+                                  <a
+                                    key={index}
+                                    onClick={() =>
+                                      goToProductsForCategory(category.id)
+                                    }
+                                    className="block px-4 py-2 text-sm text-gray-700 bg-slate-300"
+                                  >
+                                    {category.nombre}
+                                  </a>
+                                );
+                              }
+                              return null;
+                            })}
+                          </li>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -298,16 +339,39 @@ export const Navbar = () => {
         </div>
       )}
       {showCategories && (
-        <div className="absolute hidden md:block md:left-12  xl:left-18 2xl:left-24 z-10 mt-0 w-48 h-64 origin-top-right rounded-xl bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-y-auto">
-          {categories.map((category, index) => (
+        <div className="absolute hidden md:block md:left-12 xl:left-18 2xl:left-24 z-10 mt-0 w-48 max-h-64 origin-top-right rounded-xl bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-y-scroll">
+          {categoriasFiltradas.map((category, index) => (
             <a
               key={index}
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700"
+              onClick={handleShowModalCategories}
+              className="px-4 py-2 text-sm text-gray-700 flex cursor-pointer"
             >
               {category.nombre}
+              {showModalCategories ? (
+                <FiChevronRight className="ml-2 mt-2 w-4 h-4" />
+              ) : (
+                <FiChevronDown className="ml-2 mt-2 w-4 h-4" />
+              )}
             </a>
           ))}
+          {showModalCategories && (
+            <div>
+              {categories.map((category, index) => {
+                if (category.codigo.includes('.')) {
+                  return (
+                    <a
+                      key={index}
+                      onClick={() => goToProductsForCategory(category.id)}
+                      className="block px-4 py-2 text-sm text-gray-700 bg-slate-300 hover:bg-slate-400 cursor-pointer"
+                    >
+                      {category.nombre}
+                    </a>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          )}
         </div>
       )}
     </header>
