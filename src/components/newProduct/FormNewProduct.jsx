@@ -55,7 +55,7 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
           const token = dataLogin.token;
           const response = await postProduct(formDataWithImage, token);
           console.log(response);
-          if (response.status === 'success') {
+          if (response) {
             // Verifica si la respuesta es exitosa
             alert('Publicación creada con éxito!'); // Mensaje personalizado
           } else {
@@ -77,7 +77,7 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
       descripcion: '',
       precio: '',
       categoriaId: 1,
-      usuarioId: 4,
+      usuarioId: dataLogin.payload.userId,
       imagen: null,
     });
   };

@@ -139,7 +139,14 @@ export const YourProductsComp = () => {
             <div>
               <h1 className="text-3xl font-semibold">Tus Publicaciones</h1>
             </div>
-            <div className="bg-white w-full h-[350px] rounded-lg shadow-lg"></div>
+            <div className="bg-white w-full h-[350px] rounded-lg shadow-lg">
+              <div className="product-card">
+                <img src="" alt="imagen producto" />
+                <h2>nombre</h2>
+                <p>descripcion</p>
+                <p>Precio:</p>
+              </div>
+            </div>
           </div>
         )}
       </div>
