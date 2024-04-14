@@ -59,3 +59,22 @@ export const postProduct = async (data, token) => {
     throw error;
   }
 };
+
+const fetchArticlesByUserId = async (usuarioId) => {
+  console.log('TRAIGO USUARIO ID', usuarioId);
+  const url = `articulos/findAll?limit=10&offset=0&usuarioId=${usuarioId}`;
+
+  try {
+    const response = await axios.get(`${baseUrl}${url}`);
+
+    if (response.status !== 200) {
+      throw new Error('Error al obtener los datos');
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};
+export { fetchArticlesByUserId };
