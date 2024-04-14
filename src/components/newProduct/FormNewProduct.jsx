@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { postProduct } from '../../services/Articles';
 import { useAuth } from '../../context/Auth';
+import { useNavigate } from 'react-router-dom';
 
 export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
+  const navigate = useNavigate();
   const { dataLogin } = useAuth();
   const [formData, setFormData] = useState({
     nombre: '',
@@ -58,6 +60,10 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
           if (response) {
             // Verifica si la respuesta es exitosa
             alert('Publicación creada con éxito!'); // Mensaje personalizado
+            console.log('ID A PASAR', response.data.id);
+            navigate('/createdPublic', {
+              state: { productId: response.data.id },
+            });
           } else {
             alert(response.message); // Muestra el mensaje de respuesta del servidor si no es exitosa
           }

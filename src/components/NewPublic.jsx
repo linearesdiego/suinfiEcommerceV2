@@ -5,12 +5,9 @@ import { useState } from 'react';
 //Imports images
 import okImage from '../assets/Ok.png';
 import { useEffect } from 'react';
-//IMPORTANTE
-//Falta traer la id de cuando se crea la publicacion
-const id = 10;
 
-export const NewPublic = () => {
-  const [product, setProduct] = useState(10);
+export const NewPublic = ({ id }) => {
+  const [product, setProduct] = useState(id);
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -88,7 +85,7 @@ export const NewPublic = () => {
         {/* SECTION BUTTONS */}
         <div className="py-2 m-2 text-center md:text-right">
           {/* IMPORTANTE LINKEAR A CREAR NUEVO PRODUCTO/PUBLICACION */}
-          <Link to="/">
+          <Link to="/newProduct">
             <button className="py-2.5 px-9 m-2 text-xl hover:rounded-lg hover:bg-[#295F93] hover:text-white">
               Volver a publicar
             </button>
