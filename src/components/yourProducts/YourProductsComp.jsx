@@ -4,7 +4,10 @@ import { useAuth } from '../../context/Auth';
 import { useNavigate } from 'react-router-dom';
 
 //imports services
-import { fetchArticlesByUserId } from '../../services/Articles';
+import {
+  fetchArticlesByUserId,
+  deleteArticleById,
+} from '../../services/Articles';
 import { fetchOneProfile } from '../../services/Perfil';
 //Imgs imports
 import ExplorarImg from '../../assets/Explorar.png';
@@ -79,7 +82,24 @@ export const YourProductsComp = () => {
       fetchUserArticles();
     }
   }, [usuarioId, activeSection]);
-
+  // Función para manejar la eliminación de un artículo
+  const handleDeleteArticle = async (articleId) => {
+    try {
+      const confirmation = await deleteArticleById(
+        usuarioId,
+        articleId,
+        dataLogin.token
+      );
+      console.log(confirmation);
+      // Si la eliminación es exitosa, puedes actualizar el estado o realizar otras acciones necesarias
+      // Por ejemplo, recargar la lista de artículos
+      // fetchUserArticles();
+      setModal(false); // Cerrar el modal después de eliminar el artículo
+    } catch (error) {
+      console.error('Error al eliminar el artículo:', error);
+    }
+  };
+  // Renderización del componente
   return (
     <div className="lg:w-full flex flex-row lg:h-full min-h-screen bg-slate-200">
       <div className="w-full lg:w-[25%] lg:h-full lg:flex lg:items-center ">
@@ -246,7 +266,10 @@ export const YourProductsComp = () => {
                       ...
                     </button>
                     {modal && (
-                      <div className="border border-black rounded-xl p-2 hover:bg-[#0000004F] hover:cursor-pointer mt-2">
+                      <div
+                        className="border border-black rounded-xl p-2 hover:bg-[#0000004F] hover:cursor-pointer mt-2"
+                        onClick={() => handleDeleteArticle(article.id)}
+                      >
                         ELIMINAR PUBLICACION
                       </div>
                     )}
