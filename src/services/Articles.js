@@ -61,7 +61,6 @@ export const postProduct = async (data, token) => {
 };
 
 const fetchArticlesByUserId = async (usuarioId) => {
-  console.log('TRAIGO USUARIO ID', usuarioId);
   const url = `articulos/findAll?limit=10&offset=0&usuarioId=${usuarioId}`;
 
   try {
@@ -78,3 +77,28 @@ const fetchArticlesByUserId = async (usuarioId) => {
   }
 };
 export { fetchArticlesByUserId };
+
+const deleteArticleById = async (usuarioId, articleId, token) => {
+  const url = `articulos/${articleId}`;
+
+  try {
+    const response = await axios.delete(`${baseUrl}${url}`, {
+      headers: {
+        Authorization: `${token}`, // Asegúrate de enviar el token de autenticación si es necesario
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+
+    if (response.status !== 200) {
+      throw new Error('Error al eliminar el artículo');
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};
+
+export { deleteArticleById };
