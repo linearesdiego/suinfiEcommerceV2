@@ -24,7 +24,7 @@ export const ProductsFeatures = ({ descripcion }) => {
   return (
     <>
       <section>
-        <div className="border border-y-gray-400 p-5 m-4">
+        <div className="border border-y-gray-400 p-5">
           <div className="">
             <h1 className="text-start mt-8 mx-12 p-2 font-semibold text-2xl">
               Características de Productos

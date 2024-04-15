@@ -70,17 +70,17 @@ export const RelatedProducts = ({ categoria }) => {
   ).length;
   return (
     <>
-      <section className="containerWidth pl-1 pr-5 sm:px-10 py-10 lg:py-10 bg-white rounded-2xl mt-20 mb-20">
-        <div className="bg-white w-fit rounded-t-3xl p-6 ml-6">
-          <h1 className="text-3xl font-bold text-center sm:text-start  text-black">
-            Productos Relacionados
-          </h1>
+    <section className="containerWidth pl-1 pr-5 sm:px-10 py-10 sm:py-0 bg-white rounded-2xl flex flex-col items-center justify-center">
+    <div className="bg-white w-fit rounded-t-3xl pb-12 flex items-center justify-center">
+      <h1 className="text-3xl font-bold text-center sm:text-center text-black">
+        Productos Relacionados
+      </h1>
         </div>
         <div className="w-full flex items-center justify-center">
           {isLoading && <Loader />}
         </div>
         {cantidadElementos == 0 ? (
-          <p className="text-start mt-3 mb-1 mx-12 p-2 ">
+          <p className="text-center mt-3 mb-1 mx-12 p-2 ">
             No hay productos relacionados
           </p>
         ) : (
@@ -115,8 +115,8 @@ export const RelatedProducts = ({ categoria }) => {
           >
             {articles
               .filter((item) => item.categoria.id === categoria)
-              .map((item) => (
-                <div className="bg-black">
+              .map((item, index) => (
+                <div className="bg-black" key={index}>
                   <SwiperSlide
                     key={item.id}
                     className="flex items-center justify-center "
@@ -128,9 +128,9 @@ export const RelatedProducts = ({ categoria }) => {
                       >
                         <div className=" w-auto h-auto p-8">
                           {item.imagen.map(
-                            (itemCard) =>
+                            (itemCard, index) =>
                               itemCard.id === item.id && (
-                                <div className="">
+                                <div className="" key={index}>
                                   <img
                                     src={itemCard.imagenNew}
                                     alt="article img"

@@ -7,7 +7,7 @@ import dropdown from '../assets/icon-dropdown.png';
 import like from '../assets/icon-like.png';
 import dislike from '../assets/icon-dislike.png';
 
-export const ReviewProducts = () => {
+export const ReviewProducts = ({idProduct}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenCategorie, setIsOpenCategorie] = useState(false);
 
@@ -38,39 +38,39 @@ export const ReviewProducts = () => {
         </div>
 
         <div>
-          <div class="flex items-center justify-between">
-            <div class="bg-[#d0d0d0] h-[6px] rounded-sm overflow-hidden w-full">
-              <div class="bg-[#f4d240] h-full w-[70%]"></div>
+          <div className="flex items-center justify-between">
+            <div className="bg-[#d0d0d0] h-[6px] rounded-sm overflow-hidden w-full">
+              <div className="bg-[#f4d240] h-full w-[70%]"></div>
             </div>
-            <p class="ml-2 text-right text-[#d0d0d0]">5</p>
+            <p className="ml-2 text-right text-[#d0d0d0]">5</p>
           </div>
 
-          <div class="flex items-center justify-between">
-            <div class="bg-[#d0d0d0] h-[6px] rounded-sm overflow-hidden w-full">
-              <div class="bg-[#f4d240] h-full w-[10%]"></div>
+          <div className="flex items-center justify-between">
+            <div className="bg-[#d0d0d0] h-[6px] rounded-sm overflow-hidden w-full">
+              <div className="bg-[#f4d240] h-full w-[10%]"></div>
             </div>
-            <p class="ml-2 text-right text-[#d0d0d0]">4</p>
+            <p className="ml-2 text-right text-[#d0d0d0]">4</p>
           </div>
 
-          <div class="flex items-center justify-between">
-            <div class="bg-[#d0d0d0] h-[6px] rounded-sm overflow-hidden w-full">
-              <div class="bg-[#f4d240] h-full w-[0%]"></div>
+          <div className="flex items-center justify-between">
+            <div className="bg-[#d0d0d0] h-[6px] rounded-sm overflow-hidden w-full">
+              <div className="bg-[#f4d240] h-full w-[0%]"></div>
             </div>
-            <p class="ml-2 text-right text-[#d0d0d0]">3</p>
+            <p className="ml-2 text-right text-[#d0d0d0]">3</p>
           </div>
 
-          <div class="flex items-center justify-between">
-            <div class="bg-[#d0d0d0] h-[6px] rounded-sm overflow-hidden w-full">
-              <div class="bg-[#f4d240] h-full w-[0%]"></div>
+          <div className="flex items-center justify-between">
+            <div className="bg-[#d0d0d0] h-[6px] rounded-sm overflow-hidden w-full">
+              <div className="bg-[#f4d240] h-full w-[0%]"></div>
             </div>
-            <p class="ml-2 text-right text-[#d0d0d0]">2</p>
+            <p className="ml-2 text-right text-[#d0d0d0]">2</p>
           </div>
 
-          <div class="flex items-center justify-between">
-            <div class="bg-[#d0d0d0] h-[6px] rounded-sm overflow-hidden w-full">
-              <div class="bg-[#f4d240] h-full w-[0%]"></div>
+          <div className="flex items-center justify-between">
+            <div className="bg-[#d0d0d0] h-[6px] rounded-sm overflow-hidden w-full">
+              <div className="bg-[#f4d240] h-full w-[0%]"></div>
             </div>
-            <p class="ml-2 text-right text-[#d0d0d0]">1</p>
+            <p className="ml-2 text-right text-[#d0d0d0]">1</p>
           </div>
         </div>
 

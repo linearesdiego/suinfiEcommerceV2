@@ -11,30 +11,39 @@ import { ReviewProducts } from './ReviewProducts';
 import { Payments } from './Payments';
 
 const ProductDetail = () => {
+  // Get data from Auth context
   const { dataLogin, setCartResponse, setShowModal } = useAuth();
+  // Get the product ID from URL parameters
   const { id } = useParams();
 
+  // State variables
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const [cantidad, setCantidad] = useState(1);
+  const [cantidad, setCantidad] = useState(1); // Not sure what 'cantidad' means
   const [categoria, setCategoria] = useState();
   const [descripcion, setDescripcion] = useState();
 
+  // React Router hooks
   const navigate = useNavigate();
+
+  // Function to handle incrementing product quantity
   const handleIncrement = () => {
     setCantidad(cantidad + 1);
   };
 
+  // Function to handle decrementing product quantity
   const handleDecrement = () => {
     if (cantidad > 1) {
       setCantidad(cantidad - 1);
     }
   };
 
+  // Function to handle adding product to cart
   const handleAddToCart = () => {
     if (dataLogin?.userLogin) {
       const token = dataLogin.token;
       console.log(token);
+      // Add product to cart service call
       addProductToCart(
         {
           articuloId: product?.id,
@@ -50,10 +59,12 @@ const ProductDetail = () => {
         }
       });
     } else {
+      // Redirect to login if user is not authenticated
       navigate('/auth#login');
     }
   };
 
+  // Fetch product details from API on component mount
   useEffect(() => {
     const fetchProduct = async () => {
       setIsLoading(true);
@@ -61,7 +72,7 @@ const ProductDetail = () => {
         const productData = await fetchProductById(id);
 
         if (productData) {
-          // Procesamiento de imágenes (igual al código anterior)
+          // Processing images (similar to the previous code)
           const arrayBuffer = new Uint8Array(productData?.imagen1?.data).buffer;
           const uint8Array = new Uint8Array(arrayBuffer);
           let binaryString = '';
@@ -71,6 +82,7 @@ const ProductDetail = () => {
           const base64Data = btoa(binaryString);
           const dataUrl = `data:image/png;base64,${base64Data}`;
 
+          // Update product state with processed data
           const data = { ...productData, imagenNew: dataUrl };
           setProduct(data);
           setCategoria(productData.categoriaId);
@@ -143,7 +155,7 @@ const ProductDetail = () => {
               <div className="h-[1px] w-full bg-[#807f7f] my-32"></div>
               <ProductsFeatures descripcion={descripcion} />
               <div className="h-[1px] w-full bg-[#807f7f] my-32"></div>
-              <ReviewProducts />
+              <ReviewProducts idProduct={id} />
             </div>
           )}
         </div>
