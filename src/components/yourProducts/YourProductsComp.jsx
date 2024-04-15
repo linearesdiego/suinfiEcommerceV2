@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/Auth';
-import { fetchOneProfile } from '../../services/Perfil';
+
+import { useNavigate } from 'react-router-dom';
 
 //imports services
 import { fetchArticlesByUserId } from '../../services/Articles';
-
+import { fetchOneProfile } from '../../services/Perfil';
 //Imgs imports
 import ExplorarImg from '../../assets/Explorar.png';
 import ComprarImg from '../../assets/Comprar.png';
@@ -15,13 +16,18 @@ import productType from '../../assets/productType.png';
 export const YourProductsComp = () => {
   const [usuarioId, setUsuarioId] = useState();
   const [articles, setArticles] = useState([]);
+  const [modal, setModal] = useState(false);
   const { dataLogin } = useAuth();
+  const navigate = useNavigate();
   // Estado local para controlar la sección activa
   const [activeSection, setActiveSection] = useState(''); // Por defecto, la sección 'explorar' está activa
 
   // Función para cambiar la sección activa cuando se hace clic en un ícono del aside
   const handleSectionChange = (section) => {
     setActiveSection(section);
+  };
+  const openModal = () => {
+    setModal(!modal);
   };
 
   useEffect(() => {
@@ -36,14 +42,36 @@ export const YourProductsComp = () => {
 
     fetchProfile();
   }, []);
-  console.log('dataprofile', usuarioId);
+
+  const handleClickById = (productId) => {
+    navigate(`/product-detail/${productId}`);
+  };
 
   useEffect(() => {
     if (usuarioId && activeSection === 'tus ventas') {
       const fetchUserArticles = async () => {
         try {
           const fetchedArticles = await fetchArticlesByUserId(usuarioId);
-          setArticles(fetchedArticles);
+
+          const articlesWithImages = await Promise.all(
+            fetchedArticles.map(async (article) => {
+              if (article.imagen1?.data) {
+                const arrayBuffer = new Uint8Array(article.imagen1.data).buffer;
+                const uint8Array = new Uint8Array(arrayBuffer);
+                let binaryString = '';
+                uint8Array.forEach((byte) => {
+                  binaryString += String.fromCharCode(byte);
+                });
+                const base64Data = btoa(binaryString);
+                const dataUrl = `data:image/png;base64,${base64Data}`;
+                return { ...article, imagen1Url: dataUrl };
+              } else {
+                return article;
+              }
+            })
+          );
+
+          setArticles(articlesWithImages);
         } catch (error) {
           console.error('Error fetching articles:', error);
         }
@@ -51,10 +79,9 @@ export const YourProductsComp = () => {
       fetchUserArticles();
     }
   }, [usuarioId, activeSection]);
-  console.log('articulo', articles);
 
   return (
-    <div className="lg:w-full flex flex-row lg:h-full min-h-screen bgnewProduct">
+    <div className="lg:w-full flex flex-row lg:h-full min-h-screen bg-slate-200">
       <div className="w-full lg:w-[25%] lg:h-full lg:flex lg:items-center ">
         <aside className="text-white w-full bg-sidebar lg:min-h-screen  lg:h-full lg:w-full lg:my-auto mr-10">
           <div className="max-w-[90%] mx-auto pt-7 ">
@@ -179,15 +206,51 @@ export const YourProductsComp = () => {
             {articles.map((article) => (
               <div
                 key={article.id}
-                className="bg-white w-full h-[350px] rounded-lg shadow-lg flex flex-col items-center justify-center p-4"
+                className="bg-white w-full h-[350px] rounded-lg shadow-lg p-9 border grid grid-cols-3 "
               >
-                <div className="product-card">
+                <div className="sm:col-span-1p-2 flex items-center justify-center">
                   <img
-                    src={article.imagen1 || 'url_de_imagen_por_defecto'}
+                    src={article.imagen1Url}
                     alt={article.nombre}
-                  />
-                  <h2>{article.nombre}</h2>
-                  <p>Precio: {article.precio}</p>
+                    height={120}
+                    width={180}
+                  ></img>
+                </div>
+
+                <div className="grid grid-rows-3">
+                  <div>
+                    <h2 className="font-semibold text-xl">{article.nombre}</h2>
+                    <h2 className="font-bold text-xl">$ {article.precio}</h2>
+                  </div>
+                  <div>
+                    <h2>Publicado el 20/20/20</h2>
+                    <h2>
+                      estado <span className="font-bold">activo</span>{' '}
+                    </h2>
+                  </div>
+                  <div className="flex">
+                    <button
+                      onClick={() => handleClickById(article.id)}
+                      className="rounded-xl border border-slate-400 hover:bg-[#0000004F] h-10 w-auto p-2 m-2 ml-0"
+                    >
+                      VER PUBLICACION
+                    </button>
+                    <button className="rounded-xl border border-slate-400 hover:bg-[#0000004F] h-10 w-auto p-2 m-2">
+                      EDITAR
+                    </button>
+                  </div>
+                </div>
+                <div className="flex justify-end items-start p-2 m-3">
+                  <div className="flex flex-col items-end">
+                    <button className="font-bold text-3xl" onClick={openModal}>
+                      ...
+                    </button>
+                    {modal && (
+                      <div className="border border-black rounded-xl p-2 hover:bg-[#0000004F] hover:cursor-pointer mt-2">
+                        ELIMINAR PUBLICACION
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
