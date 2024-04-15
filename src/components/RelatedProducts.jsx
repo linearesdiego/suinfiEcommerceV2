@@ -68,7 +68,6 @@ export const RelatedProducts = ({ categoria }) => {
   const cantidadElementos = articles.filter(
     (item) => item.categoria.id === categoria
   ).length;
-  console.log('catidad', cantidadElementos);
   return (
     <>
       <section className="containerWidth pl-1 pr-5 sm:px-10 py-10 lg:py-10 bg-white rounded-2xl mt-20 mb-20">

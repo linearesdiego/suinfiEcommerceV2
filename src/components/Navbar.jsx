@@ -125,7 +125,7 @@ export const Navbar = () => {
         </div>
         <div className="hidden md:flex items-center text-white px-1 text-nowrap">
           {dataLogin.userLogin && (
-            <Link to="/newProduct" className="hover:cursor-pointer text-lg">
+            <Link to="/yourProducts" className="hover:cursor-pointer text-lg">
               Tus publicaciones
             </Link>
           )}

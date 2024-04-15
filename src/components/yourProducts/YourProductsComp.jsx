@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../../context/Auth';
+import { fetchOneProfile } from '../../services/Perfil';
+
+//imports services
+import { fetchArticlesByUserId } from '../../services/Articles';
 
 //Imgs imports
 import ExplorarImg from '../../assets/Explorar.png';
@@ -8,6 +13,9 @@ import FiltrosImg from '../../assets/filtros.png';
 import productType from '../../assets/productType.png';
 
 export const YourProductsComp = () => {
+  const [usuarioId, setUsuarioId] = useState();
+  const [articles, setArticles] = useState([]);
+  const { dataLogin } = useAuth();
   // Estado local para controlar la sección activa
   const [activeSection, setActiveSection] = useState(''); // Por defecto, la sección 'explorar' está activa
 
@@ -15,6 +23,35 @@ export const YourProductsComp = () => {
   const handleSectionChange = (section) => {
     setActiveSection(section);
   };
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const profileData = await fetchOneProfile(dataLogin?.payload?.userId);
+        setUsuarioId(profileData.id);
+      } catch (error) {
+        console.error('Error fetching product:', error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+  console.log('dataprofile', usuarioId);
+
+  useEffect(() => {
+    if (usuarioId && activeSection === 'tus ventas') {
+      const fetchUserArticles = async () => {
+        try {
+          const fetchedArticles = await fetchArticlesByUserId(usuarioId);
+          setArticles(fetchedArticles);
+        } catch (error) {
+          console.error('Error fetching articles:', error);
+        }
+      };
+      fetchUserArticles();
+    }
+  }, [usuarioId, activeSection]);
+  console.log('articulo', articles);
 
   return (
     <div className="lg:w-full flex flex-row lg:h-full min-h-screen bgnewProduct">
@@ -139,7 +176,21 @@ export const YourProductsComp = () => {
             <div>
               <h1 className="text-3xl font-semibold">Tus Publicaciones</h1>
             </div>
-            <div className="bg-white w-full h-[350px] rounded-lg shadow-lg"></div>
+            {articles.map((article) => (
+              <div
+                key={article.id}
+                className="bg-white w-full h-[350px] rounded-lg shadow-lg flex flex-col items-center justify-center p-4"
+              >
+                <div className="product-card">
+                  <img
+                    src={article.imagen1 || 'url_de_imagen_por_defecto'}
+                    alt={article.nombre}
+                  />
+                  <h2>{article.nombre}</h2>
+                  <p>Precio: {article.precio}</p>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>

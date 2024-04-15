@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { postProduct } from '../../services/Articles';
 import { useAuth } from '../../context/Auth';
+import { useNavigate } from 'react-router-dom';
 
 export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
+  const navigate = useNavigate();
   const { dataLogin } = useAuth();
   const [formData, setFormData] = useState({
     nombre: '',
@@ -55,9 +57,13 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
           const token = dataLogin.token;
           const response = await postProduct(formDataWithImage, token);
           console.log(response);
-          if (response.status === 'success') {
+          if (response) {
             // Verifica si la respuesta es exitosa
             alert('Publicación creada con éxito!'); // Mensaje personalizado
+            console.log('ID A PASAR', response.data.id);
+            navigate('/createdPublic', {
+              state: { productId: response.data.id },
+            });
           } else {
             alert(response.message); // Muestra el mensaje de respuesta del servidor si no es exitosa
           }
@@ -77,7 +83,7 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
       descripcion: '',
       precio: '',
       categoriaId: 1,
-      usuarioId: 4,
+      usuarioId: dataLogin.payload.userId,
       imagen: null,
     });
   };
