@@ -1,76 +1,46 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAuth } from '../context/Auth';
-import {
-  createCart,
-  fetchOneCart,
-  removeProductFromCart,
-} from '../services/Carrito';
-import { fetchPagos } from '../services/Pagos';
-//images
-import mp from '../assets/logo-mp.png';
+import { fetchOneCart, removeProductFromCart } from '../services/Carrito';
+import { Link } from 'react-router-dom';
+import remove from '../assets/Remove.png';
+
 export const ModalCarrito = () => {
   const { cartResponse, dataLogin, showModal, setShowModal } = useAuth();
   const [cart, setCart] = useState();
   const [verMas, setVerMas] = useState(false);
+  const [total, setTotal] = useState(0);
+  const [cantidad, setCantidad] = useState();
 
-  const handlePago = async () => {
-    try {
-      const pagoData = await fetchPagos(1, dataLogin.payload.carritoId);
-      if (pagoData) {
-        let link = document.createElement('a');
-        link.href = pagoData.urlPago;
-        link.target = '_blank';
-        document.body.appendChild(link);
-        link.click();
-        const createCarrito = await createCart({
-          usuarioId: dataLogin.payload.userId,
-        }).then((res) => {
-          localStorage.setItem(
-            'dataLogin',
-            JSON.stringify({
-              ...dataLogin,
-              payload: { ...dataLogin.payload, carritoId: res.data.id },
-            })
-          );
-          setVerMas(false);
-        });
-        fetchOneCart(dataLogin.payload.userId).then((res) => {
-          const dataImg = res?.items?.map((img) => {
-            const arrayBuffer = new Uint8Array(img?.imagen1?.data).buffer;
-
-            // Convertir el ArrayBuffer a Uint8Array
-            const uint8Array = new Uint8Array(arrayBuffer);
-
-            // Convertir los datos binarios en una cadena base64
-            let binaryString = '';
-            uint8Array.forEach((byte) => {
-              binaryString += String.fromCharCode(byte);
-            });
-            const base64Data = btoa(binaryString);
-
-            const dataUrl = `data:image/png;base64,${base64Data}`;
-
-            return {
-              id: img.id,
-              imagenNew: dataUrl,
-            };
-          });
-          const dataNew = res.items.map((item) => {
-            return {
-              ...item,
-              imagen: dataImg.map((itemImg) => {
-                return itemImg;
-              }),
-            };
-          });
-          setCart(dataNew);
-        });
+  const handleRemove = async (id, index) => {
+    const token = dataLogin?.token;
+    const removeProduct = cart?.filter((item) => item.id !== id);
+    setCart(removeProduct);
+    await removeProductFromCart(
+      {
+        carritoId: dataLogin.payload.carritoId,
+        articuloId: id,
+        cantidad: cart[index]?.CarritoArticulo.cantidad,
+      },
+      token
+    ).then((res) => {
+      if (res) {
+        setCartResponse(true);
       }
-    } catch (error) {
-      console.error('Error fetching Pago:', error);
-    }
+    });
   };
+
+  useEffect(() => {
+    let newTotal = 0;
+    let newCantidad = 0;
+    for (let i = 0; i < cart?.length; i++) {
+      newCantidad += cart[i]?.CarritoArticulo.cantidad;
+      newTotal +=
+        cart[i]?.CarritoArticulo.precio * cart[i]?.CarritoArticulo.cantidad;
+    }
+    setTotal(newTotal);
+    setCantidad(newCantidad);
+  }, [cart]);
   useEffect(() => {
     const fetchCarrito = async () => {
       try {
@@ -113,19 +83,11 @@ export const ModalCarrito = () => {
     };
     fetchCarrito();
   }, [cartResponse]);
-
-  const handleDeleteCart = (id) => {
-    removeProductFromCart(dataLogin.payload.carritoId, id).then((response) => {
-      /*  if(response){
-
-        } */
-    });
-  };
   return (
     <>
       <div
-        className={`md:w-[500px] ${
-          verMas ? 'h-auto' : 'h-[280px]'
+        className={`md:w-[500px] md:shadow-2xl ${
+          verMas ? 'h-auto' : 'h-[230px]'
         } bg-white md:rounded-xl text-zinc-900 flex p-8 relative`}
       >
         <p
@@ -252,9 +214,22 @@ export const ModalCarrito = () => {
                   <div>
                     <p>{item.nombre}</p>
                     <div className="flex justify-between w-full">
-                      <p>
-                        {item.CarritoArticulo.cantidad}x{item.precio}
+                      <p className="">
+                        {item.CarritoArticulo.cantidad} x ${item.precio}
                       </p>
+                      <img
+                        src={remove}
+                        alt="remove"
+                        className="cursor-pointer"
+                        onClick={() => {
+                          handleRemove(
+                            item.CarritoArticulo.articuloId,
+                            cart.findIndex(
+                              (cartItem) => cartItem.id === item.id
+                            )
+                          );
+                        }}
+                      />
                     </div>
 
                     {!verMas && (
@@ -288,28 +263,43 @@ export const ModalCarrito = () => {
                     </div>
                     <div>
                       <p>{item.nombre}</p>
-                      <p>
-                        {item.CarritoArticulo.cantidad}x{item.precio}
-                      </p>
+                      <div className="flex justify-between w-full">
+                        <p>
+                          {item.CarritoArticulo.cantidad} x ${item.precio}
+                        </p>
+                        <img
+                          src={remove}
+                          alt="remove"
+                          className="cursor-pointer"
+                          onClick={() => {
+                            handleRemove(
+                              item.CarritoArticulo.articuloId,
+                              cart.findIndex(
+                                (cartItem) => cartItem.id === item.id
+                              )
+                            );
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
                 );
               })}
-            {verMas && (
+            {verMas && cart.length > 0 && (
               <>
-                <button
-                  onClick={handlePago}
-                  className="p-[7px] bg-[#009ee3] mt-4 rounded-xl text-white flex justify-center text-center items-center"
+                <p className="font-bold">
+                  Total: ${total} x {cantidad}{' '}
+                  {cantidad > 1 ? 'artículos' : 'artículo'}
+                </p>
+                <Link
+                  to="/checkout"
+                  onClick={() => {
+                    setShowModal(false);
+                  }}
+                  className="p-3 mt-1 bg-[#009ee3] rounded-xl text-white flex justify-center text-center items-center"
                 >
-                  ¡Pagar con MERCADO PAGO!
-                  <img width={40} height={40} src={mp} alt="logo-mp" />
-                </button>
-                <button
-                  onClick={() => setVerMas(true)}
-                  className="mt-1 p-3 bg-red-600 text-white rounded-xl"
-                >
-                  Vaciar Carrito
-                </button>
+                  ¡CheckOut!
+                </Link>
                 <button
                   onClick={() => {
                     setShowModal(!showModal);
@@ -327,12 +317,6 @@ export const ModalCarrito = () => {
                   className="mt-4 p-3 bg-black text-white rounded-xl"
                 >
                   ¡Ver Mas!
-                </button>
-                <button
-                  onClick={() => setVerMas(true)}
-                  className="mt-1 p-3 bg-red-600 text-white rounded-xl"
-                >
-                  Vaciar Carrito
                 </button>
               </>
             )}

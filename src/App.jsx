@@ -15,6 +15,7 @@ import { YourProductsPage } from './pages/YourProductsPage';
 import Policies from './pages/Policies';
 import { CreatedPublic } from './pages/CreatedPublic';
 import { ProductsForCategory } from './pages/ProductsForCategory';
+import { CheckOut } from './pages/CheckOut';
 function App() {
   return (
     <Router>
@@ -30,6 +31,7 @@ function App() {
         <Route path="/yourProducts" element={<YourProductsPage />} />
         <Route path="/policies" element={<Policies />} />
         <Route path="/createdPublic" element={<CreatedPublic />} />
+        <Route path="/checkout" element={<CheckOut />} />
         <Route
           path="/productsForCategory/:id"
           element={<ProductsForCategory />}

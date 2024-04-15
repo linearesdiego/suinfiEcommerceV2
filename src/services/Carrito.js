@@ -93,7 +93,6 @@ export { createCart, updateCart, deleteCart };
 // Add a product to a cart
 const addProductToCart = async (data, token) => {
   const url = `carrito/addItem`;
-  console.log(token);
   try {
     const response = await axios.post(`${baseUrl}${url}`, data, {
       headers: {
@@ -115,16 +114,16 @@ const addProductToCart = async (data, token) => {
 };
 
 //Remove a product from a cart
-const removeProductFromCart = async (carritoId, articuloId) => {
-  const url = `carrito/subItem/${carritoId}/${articuloId}`;
+const removeProductFromCart = async (data, token) => {
+  const url = `carrito/subItem`;
   try {
-    const response = await axios.delete(`${baseUrl}${url}`);
-
-    if (response.status !== 200) {
-      throw new Error('Error al obtener los datos');
-    }
-
-    return response.data;
+    const response = await axios.delete(`${baseUrl}${url}`, data, {
+      headers: {
+        Authorization: `${token}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
   } catch (error) {
     console.error('Error:', error);
     throw error;
