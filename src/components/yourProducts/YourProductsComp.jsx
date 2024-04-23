@@ -17,6 +17,9 @@ import FiltrosImg from '../../assets/filtros.png';
 import productType from '../../assets/productType.png';
 
 export const YourProductsComp = () => {
+  const handleEditClick = (productId) => {
+    navigate(`/editProduct/${productId}`); // Navega a la página de edición con el ID del producto
+  };
   const [usuarioId, setUsuarioId] = useState();
   const [articles, setArticles] = useState([]);
   const [modal, setModal] = useState(false);
@@ -255,7 +258,10 @@ export const YourProductsComp = () => {
                     >
                       VER PUBLICACION
                     </button>
-                    <button className="rounded-xl border border-slate-400 hover:bg-[#0000004F] h-10 w-auto p-2 m-2">
+                    <button
+                      onClick={() => handleEditClick(article.id)}
+                      className="rounded-xl border border-slate-400 hover:bg-[#0000004F] h-10 w-auto p-2 m-2"
+                    >
                       EDITAR
                     </button>
                   </div>

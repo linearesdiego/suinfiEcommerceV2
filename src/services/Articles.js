@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseUrl = import.meta.env.VITE_API_URL;
-//Fetching all articles
+//FETCHING ALL ARTRICLES//
 const fetchArticles = async (search) => {
   const urlAll = 'articulos/findAll?limit=100&offset=1';
   const urlSearch = `articulos/findAll?limit=100&offset=1&nombre=${
@@ -25,6 +25,8 @@ const fetchArticles = async (search) => {
 
 export default fetchArticles;
 
+//FETCHING ONE ARTICLE//
+
 const fetchProductById = async (productId) => {
   const url = `articulos/findOne/${productId}`;
   try {
@@ -37,6 +39,8 @@ const fetchProductById = async (productId) => {
 };
 
 export { fetchProductById };
+
+//CREATE ARTICLE //
 
 export const postProduct = async (data, token) => {
   const urlCreate = 'articulos';
@@ -59,7 +63,29 @@ export const postProduct = async (data, token) => {
     throw error;
   }
 };
+//EDIT ARTICLE //
+export const editProduct = async (articleId, data, token) => {
+  const urlEdit = `articulos/${articleId}`;
 
+  try {
+    const response = await axios.put(`${baseUrl}${urlEdit}`, data, {
+      headers: {
+        Authorization: `${token}`, // Include token with Bearer prefix
+        'Content-Type': 'application/json', // Ensure data is sent as JSON
+      },
+    });
+
+    if (response.status !== 200) {
+      throw new Error('Error al editar el producto');
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};
+//FETCHING USERS ARTICLES BY ID //
 const fetchArticlesByUserId = async (usuarioId) => {
   const url = `articulos/findAll?limit=10&offset=0&usuarioId=${usuarioId}`;
 
@@ -77,7 +103,7 @@ const fetchArticlesByUserId = async (usuarioId) => {
   }
 };
 export { fetchArticlesByUserId };
-
+//DELETE ARTICLE //
 const deleteArticleById = async (usuarioId, articleId, token) => {
   const url = `articulos/${articleId}`;
 

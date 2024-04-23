@@ -16,6 +16,8 @@ import Policies from './pages/Policies';
 import { CreatedPublic } from './pages/CreatedPublic';
 import { ProductsForCategory } from './pages/ProductsForCategory';
 import { CheckOut } from './pages/CheckOut';
+import EditProductComponent from './components/editProduct/EditProduct';
+
 function App() {
   return (
     <Router>
@@ -36,6 +38,8 @@ function App() {
           path="/productsForCategory/:id"
           element={<ProductsForCategory />}
         />
+        <Route path="/editProduct/:id" element={<EditProductComponent />} />
+
         {/*  <Route path='/newProduct' element={<Proveedores />} />
         
         
