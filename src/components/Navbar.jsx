@@ -233,42 +233,44 @@ export const Navbar = () => {
               </Link>
             </div>
             <div className="hidden md:flex items-center text-white px-1 text-nowrap">
-              {dataLogin.userLogin && (
-                <Link to="/newProduct" className="hover:cursor-pointer text-lg">
-                  Vender
-                </Link>
-              )}
+              <Link
+                to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}
+                className="hover:cursor-pointer text-lg"
+              >
+                Vender
+              </Link>
             </div>
             <div className="hidden md:flex items-center text-white px-1 text-nowrap">
-              {dataLogin.userLogin && (
-                <Link to="/newProduct" className="hover:cursor-pointer text-lg">
-                  Favoritos
-                </Link>
-              )}
+              <Link
+                to={dataLogin.userLogin ? '/' : '/auth#login'}
+                className="hover:cursor-pointer text-lg"
+              >
+                Favoritos
+              </Link>
             </div>
             <div className="hidden md:flex items-center text-white px-1 text-nowrap">
-              {dataLogin.userLogin && (
-                <Link to="/newProduct" className="hover:cursor-pointer text-lg">
-                  Mis compras
-                </Link>
-              )}
+              <Link
+                to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}
+                className="hover:cursor-pointer text-lg"
+              >
+                Mis compras
+              </Link>
             </div>
             <div className="hidden md:flex items-center text-white px-1 text-nowrap">
-              {dataLogin.userLogin && (
-                <Link to="/newProduct" className="hover:cursor-pointer text-lg">
-                  Mis ventas
-                </Link>
-              )}
+              <Link
+                to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}
+                className="hover:cursor-pointer text-lg"
+              >
+                Mis ventas
+              </Link>
             </div>
             <div className="hidden md:flex items-center text-white px-1 text-nowrap">
-              {dataLogin.userLogin && (
-                <Link
-                  to="/yourProducts"
-                  className="hover:cursor-pointer text-lg"
-                >
-                  Tus publicaciones
-                </Link>
-              )}
+              <Link
+                to={dataLogin.userLogin ? '/yourProducts' : '/auth#login'}
+                className="hover:cursor-pointer text-lg"
+              >
+                Tus publicaciones
+              </Link>
             </div>
           </div>
           <div className="hidden md:flex justify-end w-[10%] xl:w-[30%]">
@@ -340,19 +342,29 @@ export const Navbar = () => {
               )}
             </li>
             <li className="p-2 border-b">
-              <Link to="/newProduct">Vender</Link>
+              <Link to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}>
+                Vender
+              </Link>
             </li>
             <li className="p-2 border-b">
-              <Link to="/">Favoritos</Link>
+              <Link to={dataLogin.userLogin ? '/' : '/auth#login'}>
+                Favoritos
+              </Link>
             </li>
             <li className="p-2 border-b">
-              <Link to="/newProduct">Mis compras</Link>
+              <Link to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}>
+                Mis compras
+              </Link>
             </li>
             <li className="p-2 border-b">
-              <Link to="/newProduct">Mis ventas</Link>
+              <Link to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}>
+                Mis ventas
+              </Link>
             </li>
             <li className="p-2 border-b">
-              <Link to="/newProduct">Mis publicaciones</Link>
+              <Link to={dataLogin.userLogin ? '/yourProducts' : '/auth#login'}>
+                Mis publicaciones
+              </Link>
             </li>
             <li className="p-2">
               <Link
@@ -366,7 +378,7 @@ export const Navbar = () => {
         </div>
       )}
       {showCategories && (
-        <div className="absolute hidden md:block md:left-12 xl:left-18 2xl:left-24 z-10 mt-0 w-48 max-h-64 origin-top-right rounded-xl bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-y-scroll">
+        <div className="absolute hidden md:block md:left-12 xl:left-18 2xl:left-24 z-10 mt-0 w-48 max-h-64 origin-top-right bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-y-scroll">
           {categoriasFiltradas.map((category, index) => (
             <a
               key={index}
