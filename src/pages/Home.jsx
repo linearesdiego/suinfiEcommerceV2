@@ -13,9 +13,9 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-ecommerce">
-        <Carousel />
-        <CardsInfo />
+      <div className="bg-ecommerce relative" >
+        <Carousel/>
+        <CardsInfo  />
         <FeaturedProducts />
         <Items />
         <Products />

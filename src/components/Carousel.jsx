@@ -10,57 +10,41 @@ import 'swiper/css/autoplay';
 import { Pagination, Autoplay } from 'swiper/modules';
 
 //imagenes
-//import slider1 from '../assets/slider1.png';
-import slider2 from '../assets/slider2.png';
-import slider3 from '../assets/slider3.png';
+import slider2 from '../assets/portada 2 op 2.jpg'
+import slider3 from '../assets/portada 3 op 2.jpg';
 import logoSuinfi from '../assets/suinfiHero.png';
-import ofertSlider from '../assets/ofert slider.png';
+import slider1 from '../assets/portada 1 op 2.jpg';
 
 export const Carousel = () => {
   return (
     <>
       <Swiper
-        pagination={{
-          dynamicBullets: true,
-        }}
         autoplay={{ delay: 5000 }}
         modules={[Pagination, Autoplay]}
-        className="mb-10"
+        className="mb-10 relative"
       >
-        <SwiperSlide className="relative">
-          <img
-            src={ofertSlider}
-            alt="banner-1"
-            className="w-full h-[420px]  lg:h-[500px] "
-          />
-        </SwiperSlide>
-        <SwiperSlide className="relative">
-          <img
-            src={slider2}
-            alt="banner-1"
-            className="w-full h-[420px] lg:h-[500px] object-cover"
-          />
-          <div className="containerWidth">
-            <img
-              src={logoSuinfi}
-              alt="banner-1"
-              className="w-[100px] bottom-10 object-cover absolute lg:bottom-20 lg:w-[250px]"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="relative">
+        <SwiperSlide>
           <img
             src={slider3}
             alt="banner-1"
-            className="w-full h-[420px] lg:h-[500px] object-cover"
+            className="w-full h-[420px]  lg:h-[700px] object-top aspect-[4/3]"
           />
-          <div className="containerWidth">
-            <img
-              src={logoSuinfi}
-              alt="banner-1"
-              className="w-[100px] bottom-10 object-cover absolute lg:bottom-20 lg:w-[250px]"
-            />
-          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={slider1}
+            alt="banner-1"
+            className="w-full h-[420px] lg:h-[700px]"
+          />
+          
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            src={slider2}
+            alt="banner-1"
+            className="w-full h-[420px] lg:h-[650px] "
+          />
+          
         </SwiperSlide>
       </Swiper>
     </>

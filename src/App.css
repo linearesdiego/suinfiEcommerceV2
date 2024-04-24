@@ -9,8 +9,7 @@
 .bg-ecommerce {
   width: 100%;
   height: auto;
-  background: rgb(0,0,0);
-  background: linear-gradient(rgba(0,0,0,1) 14%, rgba(244,244,244,1) 30%);
+  background:  rgba(244,244,244,1) ;
 }
 
 
