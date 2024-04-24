@@ -23,14 +23,30 @@ const fetchArticles = async (search) => {
   }
 };
 
+export default fetchArticles;
+
+export const fetchFeaturedArticles = async () => {
+  const urlFeatured = 'articulos/productoDestacado';
+
+  try {
+    const response = await axios.get(`${baseUrl}${urlFeatured}`);
+    if (response.status !== 200) {
+      throw new Error('Error al obtener los datos');
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};
+
 // Función para obtener la URL completa de la imagen
 const getImageUrl = (imageName) => {
   return `https://ecommerce-suinfi-production.up.railway.app/api/v1/articulos/imagen/${imageName}`;
 };
 
 export { getImageUrl };
-
-export default fetchArticles;
 
 //FETCHING ONE ARTICLE//
 
