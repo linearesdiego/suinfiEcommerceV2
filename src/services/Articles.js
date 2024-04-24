@@ -23,6 +23,13 @@ const fetchArticles = async (search) => {
   }
 };
 
+// Función para obtener la URL completa de la imagen
+const getImageUrl = (imageName) => {
+  return `https://ecommerce-suinfi-production.up.railway.app/api/v1/articulos/imagen/${imageName}`;
+};
+
+export { getImageUrl };
+
 export default fetchArticles;
 
 //FETCHING ONE ARTICLE//
