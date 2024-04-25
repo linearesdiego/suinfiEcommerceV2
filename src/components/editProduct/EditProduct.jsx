@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { editProduct } from '../../services/Articles';
+import { editProduct, getImageUrl } from '../../services/Articles';
 import { useAuth } from '../../context/Auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-export const EditProductComponent = ({
-  setSection,
-  dataProduct,
-  setDataProduct,
-}) => {
+export const EditProductComponent = ({ setSection, setDataProduct }) => {
   const navigate = useNavigate();
   const { dataLogin } = useAuth();
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     nombre: '',
@@ -17,9 +14,23 @@ export const EditProductComponent = ({
     precio: '',
     categoriaId: 1,
     usuarioId: dataLogin.payload.userId,
-    imagen: null, // Nuevo campo para la imagen
+    imagen1: '',
   });
-  console.log(dataLogin);
+
+  useEffect(() => {
+    if (location.state && location.state.dataProduct) {
+      const { dataProduct } = location.state;
+      setFormData({
+        nombre: dataProduct.nombre,
+        descripcion: dataProduct.descripcion,
+        precio: dataProduct.precio,
+        categoriaId: dataProduct.categoriaId,
+        usuarioId: dataProduct.usuarioId,
+        imagen1: dataProduct.imagen1,
+      });
+    }
+  }, [location.state]);
+
   const handleAddImageClick = () => {
     const inputElement = document.getElementById('productPictureInput');
     if (inputElement) {
@@ -39,62 +50,25 @@ export const EditProductComponent = ({
     const file = e.target.files[0];
     setFormData((prevState) => ({
       ...prevState,
-      imagen: file,
+      imagen1: file,
     }));
   };
 
   const handleSubmit = async () => {
-    const formDataWithImage = new FormData();
-    formDataWithImage.append('nombre', formData.nombre);
-    formDataWithImage.append('descripcion', formData.descripcion);
-    formDataWithImage.append('precio', formData.precio);
-    formDataWithImage.append('categoriaId', formData.categoriaId);
-    formDataWithImage.append('usuarioId', formData.usuarioId);
-
-    if (formData.imagen) {
-      const reader = new FileReader();
-      reader.onload = async function (e) {
-        const base64 = e.target.result.split(',')[1];
-        formDataWithImage.append('imagen1', base64); // Cambiado a "imagen1"
-
-        // Enviar la imagen al servidor
-        try {
-          const token = dataLogin.token;
-          const response = await editProduct(
-            dataProduct.id,
-            formDataWithImage,
-            token
-          ); // Pasar dataProduct.id como primer argumento
-          console.log(response);
-          if (response) {
-            // Verifica si la respuesta es exitosa
-            alert('Publicación creada con éxito!'); // Mensaje personalizado
-            console.log('ID A PASAR', response.data.id);
-            navigate('/createdPublic', {
-              state: { productId: response.data.id },
-            });
-          } else {
-            alert(response.message); // Muestra el mensaje de respuesta del servidor si no es exitosa
-          }
-        } catch (error) {
-          console.error('Error al enviar la imagen al servidor:', error);
-          alert('Error al enviar la imagen al servidor:', error.message);
-        }
-      };
-      reader.readAsDataURL(formData.imagen);
-    } else {
-      alert('Por favor, seleccione una imagen.');
+    try {
+      const token = dataLogin.token; // Obtener el token de autenticación
+      const response = await editProduct(dataProduct.id, formData, token);
+      console.log(response);
+      if (response) {
+        alert('Producto actualizado con éxito!');
+        // Aquí puedes realizar cualquier acción adicional después de la actualización exitosa
+      } else {
+        alert('Hubo un error al actualizar el producto.');
+      }
+    } catch (error) {
+      console.error('Error al actualizar el producto:', error);
+      alert('Hubo un error al actualizar el producto.');
     }
-
-    // Limpiar el formulario después de enviar la imagen
-    setFormData({
-      nombre: '',
-      descripcion: '',
-      precio: '',
-      categoriaId: 1,
-      usuarioId: dataLogin.payload.userId,
-      imagen: null,
-    });
   };
 
   return (
@@ -143,7 +117,7 @@ export const EditProductComponent = ({
           <section className="containerWidth">
             <div className="lg:max-w-[1000px] lg:mx-auto lg:flex lg:flex-col lg:gap-10">
               <div className="text-black flex flex-row justify-between  mb-5 lg:mb-0">
-                <h1 className="font-bold text-3xl">Nuevo Producto</h1>
+                <h1 className="font-bold text-3xl">Editar producto</h1>
                 <div>
                   <button onClick={() => setSection(true)}>X</button>
                 </div>
@@ -187,9 +161,9 @@ export const EditProductComponent = ({
                     <p className="lg:text-xl font-bold">Fotos</p>
                   </div>
                   <div className="py-10 lg:py-0">
-                    {formData.imagen ? (
+                    {formData.imagen1 ? (
                       <img
-                        src={URL.createObjectURL(formData.imagen)}
+                        src={getImageUrl(formData.imagen1)}
                         alt="Preview"
                         className="lg:w-[250px] lg:h-[250px] rounded-lg shadow-[0px_4px_4px_0px_#00000040]"
                       />

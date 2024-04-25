@@ -45,6 +45,7 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
     formDataToSend.append('categoriaId', formData.categoriaId);
     formDataToSend.append('usuarioId', formData.usuarioId);
     formDataToSend.append('nombre', formData.nombre);
+    formDataToSend.append('descripcion', formData.descripcion);
     formDataToSend.append('precio', formData.precio);
     formDataToSend.append('imagen1', formData.imagen1);
 
@@ -69,6 +70,7 @@ export const FormNewProduct = ({ setSection, dataProduct, setDataProduct }) => {
     setFormData({
       categoriaId: '',
       usuarioId: dataLogin.payload.userId,
+      descripcion: '',
       nombre: '',
       precio: '',
       imagen1: null,

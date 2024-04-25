@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   fetchArticlesByUserId,
   deleteArticleById,
+  getImageUrl,
 } from '../../services/Articles';
 import { fetchOneProfile } from '../../services/Perfil';
 //Imgs imports
@@ -17,18 +18,28 @@ import FiltrosImg from '../../assets/filtros.png';
 import productType from '../../assets/productType.png';
 
 export const YourProductsComp = () => {
-  const handleEditClick = (productId) => {
-    navigate(`/editProduct/${productId}`); // Navega a la página de edición con el ID del producto
+  const handleEditClick = async (productId) => {
+    try {
+      // Busca el artículo a editar por su ID
+      const articleToEdit = articles.find(
+        (article) => article.id === productId
+      );
+      // Navega a la página de edición y pasa los datos del producto como prop
+      navigate(`/editProduct/${productId}`, {
+        state: { dataProduct: articleToEdit },
+      });
+    } catch (error) {
+      console.error('Error handling edit click:', error);
+    }
   };
   const [usuarioId, setUsuarioId] = useState();
   const [articles, setArticles] = useState([]);
   const [modal, setModal] = useState(false);
   const { dataLogin } = useAuth();
   const navigate = useNavigate();
-  // Estado local para controlar la sección activa
-  const [activeSection, setActiveSection] = useState(''); // Por defecto, la sección 'explorar' está activa
+  const [activeSection, setActiveSection] = useState('');
+  const [editArticleData, setEditArticleData] = useState(null);
 
-  // Función para cambiar la sección activa cuando se hace clic en un ícono del aside
   const handleSectionChange = (section) => {
     setActiveSection(section);
   };
@@ -45,7 +56,6 @@ export const YourProductsComp = () => {
         console.error('Error fetching product:', error);
       }
     };
-
     fetchProfile();
   }, []);
 
@@ -62,15 +72,9 @@ export const YourProductsComp = () => {
           const articlesWithImages = await Promise.all(
             fetchedArticles.map(async (article) => {
               if (article.imagen1?.data) {
-                const arrayBuffer = new Uint8Array(article.imagen1.data).buffer;
-                const uint8Array = new Uint8Array(arrayBuffer);
-                let binaryString = '';
-                uint8Array.forEach((byte) => {
-                  binaryString += String.fromCharCode(byte);
-                });
-                const base64Data = btoa(binaryString);
-                const dataUrl = `data:image/png;base64,${base64Data}`;
-                return { ...article, imagen1Url: dataUrl };
+                // Utiliza la función getImageUrl para obtener la URL completa de la imagen
+                const imageUrl = getImageUrl(article.imagen1.data);
+                return { ...article, imagen1Url: imageUrl };
               } else {
                 return article;
               }
@@ -85,7 +89,7 @@ export const YourProductsComp = () => {
       fetchUserArticles();
     }
   }, [usuarioId, activeSection]);
-  // Función para manejar la eliminación de un artículo
+
   const handleDeleteArticle = async (articleId) => {
     try {
       const confirmation = await deleteArticleById(
@@ -94,14 +98,12 @@ export const YourProductsComp = () => {
         dataLogin.token
       );
       console.log(confirmation);
-      // Si la eliminación es exitosa, puedes actualizar el estado o realizar otras acciones necesarias
-      // Por ejemplo, recargar la lista de artículos
-      // fetchUserArticles();
-      setModal(false); // Cerrar el modal después de eliminar el artículo
+      setModal(false);
     } catch (error) {
       console.error('Error al eliminar el artículo:', error);
     }
   };
+
   // Renderización del componente
   return (
     <div className="lg:w-full flex flex-row lg:h-full min-h-screen bg-slate-200">
@@ -233,7 +235,7 @@ export const YourProductsComp = () => {
               >
                 <div className="sm:col-span-1p-2 flex items-center justify-center">
                   <img
-                    src={article.imagen1Url}
+                    src={getImageUrl(article.imagen1)}
                     alt={article.nombre}
                     height={120}
                     width={180}
@@ -244,6 +246,7 @@ export const YourProductsComp = () => {
                   <div>
                     <h2 className="font-semibold text-xl">{article.nombre}</h2>
                     <h2 className="font-bold text-xl">$ {article.precio}</h2>
+                    <h2 className="font-bold text-xl">{article.descripcion}</h2>
                   </div>
                   <div>
                     <h2>Publicado el 20/20/20</h2>
