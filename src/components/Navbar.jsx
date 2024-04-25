@@ -136,7 +136,7 @@ export const Navbar = () => {
                 <p className="text-white">{language}</p>
                 <FiChevronDown className="text-white w-4 h-4 hover:cursor-pointer" />
               </div>
-              {dropDown && (
+              {/* {dropDown && (
                 <div className="w-[150px] h-[135px] bg-white absolute top-[55px] -left-[50px] rounded-md">
                   <h1 className="text-xs w-full p-2">Cambiar Idioma</h1>
                   <ul className="w-full h-full flex flex-col justify-start items-start">
@@ -180,7 +180,7 @@ export const Navbar = () => {
                     </li>
                   </ul>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
           <div className="flex xl:gap-10 2xl:gap-14 gap-3">
