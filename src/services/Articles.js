@@ -71,8 +71,8 @@ export const postProduct = async (data, token) => {
   try {
     const response = await axios.post(`${baseUrl}${urlCreate}`, data, {
       headers: {
-        Authorization: `${token}`, // Include token with Bearer prefix
-        'Content-Type': 'application/json', // Ensure data is sent as JSON
+        Authorization: `${token}`,
+        'Content-Type': 'multipart/form-data',
       },
     });
 
@@ -86,6 +86,7 @@ export const postProduct = async (data, token) => {
     throw error;
   }
 };
+
 //EDIT ARTICLE //
 export const editProduct = async (articleId, data, token) => {
   const urlEdit = `articulos/${articleId}`;
