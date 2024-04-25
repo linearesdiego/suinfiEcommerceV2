@@ -10,12 +10,17 @@ import logoSuinfi2 from '../assets/logo-suinfi2.png';
 import searchLogin from '../assets/searchIcon.png';
 import shopping from '../assets/ShoppingCart.png';
 import userLogin from '../assets/userIconNavBar.png';
+import place from '../assets/PlaceMarker.png';
+import argentina from '../assets/Argentina.png';
+import usa from '../assets/USA.png';
 //icons
 import { FiChevronDown } from 'react-icons/fi';
 import { FiChevronRight } from 'react-icons/fi';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [language, setLanguage] = useState('ES');
+  const [dropDown, setDropDown] = useState(false);
   const { dataLogin, showModal, setShowModal } = useAuth();
   const [search, setSearch] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
@@ -75,7 +80,7 @@ export const Navbar = () => {
     <header className="w-full z-10 nav-bg relative">
       <nav className="containerWidth flex flex-col h-full w-full">
         <div className="w-full flex justify-between">
-          <div className="flex h-full py-[25px] gap-1">
+          <div className="flex h-full py-[30px]">
             <Link to="/" className="flex items-center gap-2">
               <img
                 src={logoSuinfi}
@@ -89,7 +94,16 @@ export const Navbar = () => {
               />
             </Link>
           </div>
-          <div className="flex items-center w-[60%] min-w-[160px] max-w-[500px]">
+          <div className="justify-center items-center hidden md:flex">
+            <div>
+              <img src={place} alt="place-logo" className="w-[25px]" />
+            </div>
+            <div className="">
+              <h1 className="text-xs leading-none text-white">Ubicación</h1>
+              <h2 className="text-sm leading-none text-white">Argentina</h2>
+            </div>
+          </div>
+          <div className="flex items-center w-[60%] sm:w-[50%] lg:w-[60%] min-w-[170px]">
             <form
               className="relative items-center w-full flex gap-3 md:flex md:justify-end"
               onSubmit={handleSubmit}
@@ -100,9 +114,9 @@ export const Navbar = () => {
                 name="searchInput"
                 value={search}
                 placeholder="Buscar en Suinfi"
-                className="block py-1 w-full rounded-lg outline-none focus:cursor-text searchValue pl-3"
+                className="block py-2 w-full rounded-md outline-none focus:cursor-text searchValue pl-3"
               />
-              <div className="bg-[#D9D9D9] absolute right-0 w-7 h-full rounded-r-lg flex items-center justify-center">
+              <div className="bg-[#D9D9D9] absolute right-0 w-10 md:w-20 h-full rounded-r-md flex items-center justify-center">
                 <img
                   src={searchLogin}
                   alt="search-logo"
@@ -111,33 +125,89 @@ export const Navbar = () => {
               </div>
             </form>
           </div>
-          <div className="hidden md:flex items-center">
-            <Link
-              to={dataLogin.userLogin ? '/profile/account' : '/auth#login'}
-              className="flex gap-3 items-center justify-center"
+          <div className="justify-center items-center hidden sm:flex relative">
+            <div
+              className="flex gap-2 hover:cursor-pointer "
+              onMouseEnter={() => setDropDown(true)}
+              onMouseLeave={() => setDropDown(false)}
             >
-              <img
-                src={userLogin}
-                alt=""
-                className="hover:cursor-pointer  min-w-7"
-              />
-              <p className="text-white hidden text-sm uppercase font-semibold md:block">
-                {dataLogin.userLogin
-                  ? `${dataLogin.payload.nombre}`
-                  : 'Iniciar Sesión'}
-              </p>
-            </Link>
+              <img src={language === 'ES' ? argentina : usa} alt="lang-flag" />
+              <div className="flex items-center">
+                <p className="text-white">{language}</p>
+                <FiChevronDown className="text-white w-4 h-4 hover:cursor-pointer" />
+              </div>
+              {dropDown && (
+                <div className="w-[150px] h-[135px] bg-white absolute top-[55px] -left-[50px] rounded-md">
+                  <h1 className="text-xs w-full p-2">Cambiar Idioma</h1>
+                  <ul className="w-full h-full flex flex-col justify-start items-start">
+                    <li class="flex py-3 gap-2 px-3 items-center w-full">
+                      <div class="flex gap-[2px]">
+                        <input
+                          type="radio"
+                          id="language-es"
+                          name="language"
+                          value="es"
+                          onClick={() => setLanguage('ES')}
+                          {...(language === 'ES' && { checked: true })}
+                        />
+                        <label
+                          for="language-es"
+                          class="text-base hover:cursor-pointer"
+                        >
+                          Español - ES
+                        </label>
+                      </div>
+                      <img src={argentina} alt="arg-flag" class="w-4 h-4" />
+                    </li>
+                    <li class="flex py-3 gap-2 px-3 items-center w-full">
+                      <div class="flex gap-[2px]">
+                        <input
+                          type="radio"
+                          id="language-en"
+                          name="language"
+                          value="en"
+                          onClick={() => setLanguage('EN')}
+                          {...(language === 'EN' && { checked: true })}
+                        />
+                        <label
+                          for="language-en"
+                          class="text-base hover:cursor-pointer"
+                        >
+                          English - EN
+                        </label>
+                      </div>
+                      <img src={usa} alt="arg-flag" class="w-4 h-4" />
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="md:hidden flex items-center justify-end">
-            <a onClick={() => handleShowModal()} className="">
-              <img
-                src={shopping}
-                alt=""
-                className="hover:cursor-pointer min-w-10"
-              />
-            </a>
-            <div className="absolute w-full md:w-auto top-[74px] right-0 md:right-[10%] z-[9999]">
-              {showModal && <ModalCarrito />}
+          <div className="flex xl:gap-10 2xl:gap-14 gap-3">
+            <div className="hidden md:flex items-center">
+              <Link
+                to={dataLogin.userLogin ? '/profile/account' : '/auth#login'}
+                className="flex gap-3 items-center justify-center"
+              >
+                <img
+                  src={userLogin}
+                  alt=""
+                  className="hover:cursor-pointer  min-w-7"
+                />
+                <p className="text-white hidden text-sm uppercase font-semibold md:block">
+                  {dataLogin.userLogin
+                    ? `${dataLogin.payload.nombre}`
+                    : 'Iniciar Sesión'}
+                </p>
+              </Link>
+            </div>
+            <div className="flex items-center justify-end">
+              <a onClick={() => handleShowModal()} className="">
+                <img src={shopping} alt="" className="hover:cursor-pointer" />
+              </a>
+              <div className="absolute w-full md:w-auto top-[74px] md:top-[120px] lg:top-[84px] right-0 md:right-9 z-[9999]">
+                {showModal && <ModalCarrito />}
+              </div>
             </div>
           </div>
           <div className="flex md:hidden">
@@ -217,14 +287,14 @@ export const Navbar = () => {
             </button>
           </div>
         </div>
-        <div className="w-full flex justify-between py-[10px]">
-          <div className="flex justify-between items-center w-[90%] xl:w-[60%]">
-            <div className="hidden md:flex items-center text-white">
+        <div className="w-full h-[50px] hidden md:flex">
+          <div className="flex gap-5 w-[100%]">
+            <div className="hidden md:flex text-white">
               <Link
                 onClick={handleShowCategories}
                 className="hover:cursor-pointer text-lg flex px-1 text-nowrap"
               >
-                Categorias
+                Categorías
                 {showCategories ? (
                   <FiChevronRight className="ml-2 mt-2 w-4 h-4" />
                 ) : (
@@ -232,7 +302,7 @@ export const Navbar = () => {
                 )}
               </Link>
             </div>
-            <div className="hidden md:flex items-center text-white px-1 text-nowrap">
+            <div className="hidden md:flex text-white px-1 text-nowrap">
               <Link
                 to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}
                 className="hover:cursor-pointer text-lg"
@@ -240,49 +310,21 @@ export const Navbar = () => {
                 Vender
               </Link>
             </div>
-            <div className="hidden md:flex items-center text-white px-1 text-nowrap">
+            <div className="hidden md:flex text-white px-1 text-nowrap">
+              <Link
+                to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}
+                className="hover:cursor-pointer text-lg"
+              >
+                Mis Compras
+              </Link>
+            </div>
+            <div className="hidden md:flex text-white px-1 text-nowrap">
               <Link
                 to={dataLogin.userLogin ? '/' : '/auth#login'}
                 className="hover:cursor-pointer text-lg"
               >
                 Favoritos
               </Link>
-            </div>
-            <div className="hidden md:flex items-center text-white px-1 text-nowrap">
-              <Link
-                to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}
-                className="hover:cursor-pointer text-lg"
-              >
-                Mis compras
-              </Link>
-            </div>
-            <div className="hidden md:flex items-center text-white px-1 text-nowrap">
-              <Link
-                to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}
-                className="hover:cursor-pointer text-lg"
-              >
-                Mis ventas
-              </Link>
-            </div>
-            <div className="hidden md:flex items-center text-white px-1 text-nowrap">
-              <Link
-                to={dataLogin.userLogin ? '/yourProducts' : '/auth#login'}
-                className="hover:cursor-pointer text-lg"
-              >
-                Tus publicaciones
-              </Link>
-            </div>
-          </div>
-          <div className="hidden md:flex justify-end w-[10%] xl:w-[30%]">
-            <a onClick={() => handleShowModal()} className="">
-              <img
-                src={shopping}
-                alt=""
-                className="hover:cursor-pointer min-w-10"
-              />
-            </a>
-            <div className="absolute w-full md:w-auto top-[74px] right-0 md:right-[10%] z-[9999]">
-              {showModal && <ModalCarrito />}
             </div>
           </div>
         </div>
@@ -347,23 +389,13 @@ export const Navbar = () => {
               </Link>
             </li>
             <li className="p-2 border-b">
-              <Link to={dataLogin.userLogin ? '/' : '/auth#login'}>
-                Favoritos
-              </Link>
-            </li>
-            <li className="p-2 border-b">
               <Link to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}>
                 Mis compras
               </Link>
             </li>
             <li className="p-2 border-b">
-              <Link to={dataLogin.userLogin ? '/newProduct' : '/auth#login'}>
-                Mis ventas
-              </Link>
-            </li>
-            <li className="p-2 border-b">
-              <Link to={dataLogin.userLogin ? '/yourProducts' : '/auth#login'}>
-                Mis publicaciones
+              <Link to={dataLogin.userLogin ? '/' : '/auth#login'}>
+                Favoritos
               </Link>
             </li>
             <li className="p-2">

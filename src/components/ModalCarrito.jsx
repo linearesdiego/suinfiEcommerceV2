@@ -87,7 +87,7 @@ export const ModalCarrito = () => {
     <>
       <div
         className={`md:w-[500px] md:shadow-2xl ${
-          verMas ? 'h-auto' : 'h-[230px]'
+          verMas ? 'h-auto' : 'h-auto md:h-[230px]'
         } bg-white md:rounded-xl text-zinc-900 flex p-8 relative`}
       >
         <p
