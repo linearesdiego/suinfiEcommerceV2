@@ -30,7 +30,7 @@ export const Login = () => {
       setCondition(false);
       setTimeout(() => {
         setShowAlert(false);
-      }, 4000);
+      }, 1000);
       console.log(error);
     }
   };

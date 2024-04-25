@@ -33,13 +33,13 @@ export const Register = () => {
         reset();
         window.location.reload();
         navigate('/auth#login');
-      }, 4000);
+      }, 2000);
     } catch (error) {
       setShowAlert(true);
       setCondition(false);
       setTimeout(() => {
         setShowAlert(false);
-      }, 4000);
+      }, 2000);
 
       console.log('AXIOS ERROR', error);
     }
@@ -88,7 +88,7 @@ export const Register = () => {
                       {...registerValidator('username', {
                         required: true,
                         minLength: 3,
-                        maxLength: 15,
+                        maxLength: 128,
                       })}
                       type="text"
                       placeholder="Username"
@@ -111,7 +111,7 @@ export const Register = () => {
                     {errors.username &&
                       errors.username.type === 'maxLength' && (
                         <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
-                          Username max 15
+                          Username max 128
                         </span>
                       )}
                   </div>
@@ -130,7 +130,7 @@ export const Register = () => {
                         required: true,
                         pattern: /^[A-Za-zÁÉÍÓÚáéíóú]+$/,
                         minLength: 3,
-                        maxLength: 15,
+                        maxLength: 50,
                       })}
                       type="text"
                       placeholder="Name"
@@ -157,7 +157,7 @@ export const Register = () => {
                     )}
                     {errors.nombre && errors.nombre.type === 'maxLength' && (
                       <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
-                        Name max 15
+                        Name max 50
                       </span>
                     )}
                   </div>
@@ -175,7 +175,7 @@ export const Register = () => {
                         required: true,
                         pattern: /^[A-Za-zÁÉÍÓÚáéíóú]+$/,
                         minLength: 3,
-                        maxLength: 15,
+                        maxLength: 50,
                       })}
                       type="text"
                       placeholder="Lastname"
@@ -198,13 +198,13 @@ export const Register = () => {
                     {errors.apellido &&
                       errors.apellido.type === 'minLength' && (
                         <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
-                          Name min 3
+                          Last name min 3
                         </span>
                       )}
                     {errors.apellido &&
                       errors.apellido.type === 'maxLength' && (
                         <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
-                          Name max 15
+                          Last name max 50
                         </span>
                       )}
                   </div>
@@ -222,7 +222,7 @@ export const Register = () => {
                         required: true,
                         pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                         minLength: 3,
-                        maxLength: 25,
+                        maxLength: 256,
                       })}
                       type="email"
                       placeholder="Email"
@@ -249,7 +249,7 @@ export const Register = () => {
                     )}
                     {errors.email && errors.email.type === 'maxLength' && (
                       <span className="absolute text-red-500 text-xs bottom-0 right-0 ">
-                        Email max 15
+                        Email max 256
                       </span>
                     )}
                   </div>
@@ -288,7 +288,8 @@ export const Register = () => {
                         Type of cedula
                       </option>
                       <option value="dni">DNI</option>
-                      <option value="add">add</option>
+                      <option value="cuit">CUIT</option>
+                      <option value="cuil">CUIL</option>
                     </select>
 
                     {errors.tipCedula &&

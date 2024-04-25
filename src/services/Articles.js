@@ -92,10 +92,10 @@ export const editProduct = async (articleId, data, token) => {
   const urlEdit = `articulos/${articleId}`;
 
   try {
-    const response = await axios.put(`${baseUrl}${urlEdit}`, data, {
+    const response = await axios.patch(`${baseUrl}${urlEdit}`, data, {
       headers: {
         Authorization: `${token}`, // Include token with Bearer prefix
-        'Content-Type': 'application/json', // Ensure data is sent as JSON
+        'Content-Type': 'multipart/form-data',
       },
     });
 
@@ -109,6 +109,7 @@ export const editProduct = async (articleId, data, token) => {
     throw error;
   }
 };
+
 //FETCHING USERS ARTICLES BY ID //
 const fetchArticlesByUserId = async (usuarioId) => {
   const url = `articulos/findAll?limit=10&offset=0&usuarioId=${usuarioId}`;

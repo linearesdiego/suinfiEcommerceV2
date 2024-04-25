@@ -14,12 +14,17 @@ export const EditProductComponent = ({ setSection, setDataProduct }) => {
     precio: '',
     categoriaId: 1,
     usuarioId: dataLogin.payload.userId,
-    imagen1: '',
+    imagen1: null,
   });
+
+  // Almacena dataProduct en un estado local
+  const [dataProduct, setDataProductLocal] = useState(null);
 
   useEffect(() => {
     if (location.state && location.state.dataProduct) {
       const { dataProduct } = location.state;
+      // Guarda dataProduct en el estado local
+      setDataProductLocal(dataProduct);
       setFormData({
         nombre: dataProduct.nombre,
         descripcion: dataProduct.descripcion,

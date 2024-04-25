@@ -27,14 +27,14 @@ export const Carousel = () => {
           <img
             src={slider3}
             alt="banner-1"
-            className="w-full h-[420px]  lg:h-[700px] object-top aspect-[4/3]"
+            className="w-full h-[420px]   lg:h-[500px] object-top aspect-[4/3]"
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
             src={slider1}
             alt="banner-1"
-            className="w-full h-[420px] lg:h-[700px]"
+            className="w-full h-[420px] lg:h-[600px]"
           />
           
         </SwiperSlide>
@@ -42,7 +42,7 @@ export const Carousel = () => {
           <img
             src={slider2}
             alt="banner-1"
-            className="w-full h-[420px] lg:h-[650px] "
+            className="w-full h-[420px] lg:h-[700px] "
           />
           
         </SwiperSlide>
