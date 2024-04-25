@@ -27,7 +27,7 @@ export const CardsInfo = () => {
       spaceBetween={20} // Espacio entre elementos
       navigation={true}
       modules={[Navigation]}
-      className="containerWidth flex flex-row justify-between my-20"
+      className="containerWidth flex flex-row justify-between my-20 lg:mt-[-120px] mt-[-150px]"
       breakpoints={{
         1520: {
           slidesPerView: 6,
