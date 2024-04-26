@@ -68,7 +68,7 @@ export const Products = () => {
             },
           }}
         >
-          {articles.slice(86, 89).map((item) => (
+          {articles.slice(1, 10).map((item) => (
             <SwiperSlide
               key={item.id}
               className="flex items-center justify-center"
@@ -143,7 +143,7 @@ export const Products = () => {
             },
           }}
         >
-          {articles.slice(86, 89).map((item) => (
+          {articles.slice(1, 10).map((item) => (
             <SwiperSlide
               key={item.id}
               className="flex items-center justify-center"
@@ -218,7 +218,7 @@ export const Products = () => {
             },
           }}
         >
-          {articles.slice(86, 89).map((item) => (
+          {articles.slice(1, 10).map((item) => (
             <SwiperSlide
               key={item.id}
               className="flex items-center justify-center"

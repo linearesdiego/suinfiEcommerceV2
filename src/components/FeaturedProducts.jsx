@@ -50,7 +50,7 @@ export const FeaturedProducts = () => {
             PRODUCTOS DESTACADOS
           </h1>
           <div className="w-full h-full flex flex-col lg:flex-row justify-between xl:px-20">
-            {products.slice(86, 89).map((product) => (
+            {products.slice(1, 4).map((product) => (
               <div
                 key={product.id}
                 className="h-full flex justify-center items-center py-3 lg:py-0"
